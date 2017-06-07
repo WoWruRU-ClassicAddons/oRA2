@@ -21,50 +21,38 @@ local spells = {
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["resurrection"] = true,
-	["resurrectionparticipant"] = true,
 	["Participant/Resurrection"] = true,
 	["Options for resurrection."] = true,
-	["Toggle"] = true,
-	["toggle"] = true,
 	["^Corpse of (.+)$"] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Participant/Resurrection"] = "Участник/Воскрешение",
+	["Options for resurrection."] = "Опции для воскрешения.",
+	["^Corpse of (.+)$"] = "^Труп (.+)$",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["Participant/Resurrection"] = "부분/부활",
 	["Options for resurrection."] = "부활 설정",
-	["Toggle"] = "토글",
 	["^Corpse of (.+)$"] = "^([^%s]+)의 시체",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["resurrection"] = "复活术",
-	["resurrectionparticipant"] = "resurrectionparticipant",
 	["Participant/Resurrection"] = "Participant/Resurrection",
 	["Options for resurrection."] = "复活的选项",
-	["Toggle"] = "显示",
-	["toggle"] = "显示",
 	["^Corpse of (.+)$"] = "^([^%s]+)的尸体",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["resurrection"] = "復活",
-	["resurrectionparticipant"] = "resurrectionparticipant",
 	["Participant/Resurrection"] = "隊員/復活",
 	["Options for resurrection."] = "復活選項",
-	["Toggle"] = "顯示",
-	["toggle"] = "顯示",
 	["^Corpse of (.+)$"] = "^(.+)的屍體",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["resurrection"] = true,
-	--["resurrectionparticipant"] = true,
 	["Participant/Resurrection"] = "Participant/R\195\169surrection",
 	["Options for resurrection."] = "Options concernant les r\195\169surrections",
-	["Toggle"] = "Afficher",
-	--["toggle"] = true,
 	["^Corpse of (.+)$"] = "^Cadavre de (.+)$",
 } end )
 
@@ -72,15 +60,14 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAPResurrection = oRA:NewModule(L["resurrectionparticipant"], "AceHook-2.1")
+oRAPResurrection = oRA:NewModule("resurrectionparticipant", "AceHook-2.1")
 oRAPResurrection.defaults = {
 }
 oRAPResurrection.participant = true
 oRAPResurrection.name = L["Participant/Resurrection"]
--- oRAPResurrection.consoleCmd = L["resurrection"]
+-- oRAPResurrection.consoleCmd = "resurrection"
 -- oRAPResurrection.consoleOptions = {
--- 	type = "group",
--- 	desc = L["Options for resurrection."],
+-- 	type = "group", desc = L["Options for resurrection."],
 -- 	args = {
 -- 	}
 -- }
@@ -299,4 +286,3 @@ function oRAPResurrection:WorldFrameOnMouseDown()
 	end
 	self.hooks[WorldFrame]["OnMouseDown"]()
 end
-

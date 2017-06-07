@@ -46,9 +46,7 @@ local buffs = {
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["buffparticipant"] = true,
 	["Participant/Buff"] = true,
-	["buff"] = true,
 	["Buff"] = true,
 	["Options for buffs."] = true,
 
@@ -85,8 +83,45 @@ L:RegisterTranslations("enUS", function() return {
 	["DampenMagic"] = "Dampen Magic",
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Participant/Buff"] = "Участник/Баффы",
+	["Buff"] = "Баффы",
+	["Options for buffs."] = "Опции для баффов.",
 
+	["PowerWordFortitude"] = "Слово силы: Стойкость",
+	["PrayerOfFortitude"] = "Молитва стойкости",
+	["GiftOfTheWild"] = "Дар дикой природы",
+	["MarkOfTheWild"] = "Знак дикой природы",
+	["ArcaneIntellect"] = "Чародейский интеллект",
+	["ArcaneBrilliance"] = "Чародейская гениальность",
+	["ShadowProtection"] = "Защита от темной магии",
+	["PrayerofShadowProtection"] = "Молитва защиты от темной магии",
+	["PowerWordShield"] = "Слово силы: Щит",
+	["SoulstoneResurrection"] = "Воскрешение камнем души",
+	["DivineSpirit"] = "Божественный дух",
+	["PrayerOfSpirit"] = "Молитва духа",
+	["Thorns"] = "Шипы",
+	["FearWard"] = "Защита от страха",
+	["BlessingOfMight"] = "Благословение могущества",
+	["GreaterBlessingOfMight"] = "Великое благословение могущества",
+	["BlessingOfWisdom"] = "Благословение мудрости",
+	["GreaterBlessingOfWisdom"] = "Великое благословение мудрости",
+	["BlessingOfKings"] = "Благословение королей",
+	["GreaterBlessingOfKings"] = "Великое благословение королей",
+	["BlessingOfSalvation"] = "Благословение спасения",
+	["GreaterBlessingOfSalvation"] = "Великое благословение спасения",
+	["BlessingOfLight"] = "Благословение Света",
+	["GreaterBlessingOfLight"] = "Великое благословение Света",
+	["BlessingOfSanctuary"] = "Благословение неприкосновенности",
+	["GreaterBlessingOfSanctuary"] = "Великое благословение неприкосновенности",
+	["Renew"] = "Обновление",
+	["Rejuvenation"] = "Омоложение",
+	["Regrowth"] = "Восстановление",
+	["AmplifyMagic"] = "Усиление магии",
+	["DampenMagic"] = "Ослабление магии",
+} end )
+
+L:RegisterTranslations("koKR", function() return {
 	["Participant/Buff"] = "부분/버프",
 	["Buff"] = "버프",
 	["Options for buffs."] = "버프 설정",
@@ -125,9 +160,7 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["buffparticipant"] = "buffparticipant",
 	["Participant/Buff"] = "Participant/Buff",
-	["buff"] = "buff",
 	["Buff"] = "buff",
 	["Options for buffs."] = "buff助手选项",
 
@@ -165,9 +198,7 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["buffparticipant"] = "buffparticipant",
 	["Participant/Buff"] = "隊員/增益",
-	["buff"] = "增益",
 	["Buff"] = "增益",
 	["Options for buffs."] = "增益狀態選項",
 
@@ -205,10 +236,8 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["buffparticipant"] = true,
-	--["Participant/Buff"] = true,
-	--["buff"] = true,
-	--["Buff"] = true,
+	["Participant/Buff"] = "Participant/Buff",
+	["Buff"] = "Buff",
 	["Options for buffs."] = "Options concernant les buffs.",
 
 	["PowerWordFortitude"] = "Mot de pouvoir : Robustesse",
@@ -248,16 +277,15 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAPBuff = oRA:NewModule(L["buffparticipant"])
+oRAPBuff = oRA:NewModule("buffparticipant")
 
 oRAPBuff.defaults = {
 }
 oRAPBuff.participant = true
 oRAPBuff.name = L["Participant/Buff"]
--- oRAPBuff.consoleCmd = L["buff"]
+-- oRAPBuff.consoleCmd = "buff"
 -- oRAPBuff.consoleOptions = {
--- 	type = "group",
--- 	desc = L["Options for buffs."],
+-- 	type = "group",desc = L["Options for buffs."],
 -- 	args = {
 -- 	}
 -- }

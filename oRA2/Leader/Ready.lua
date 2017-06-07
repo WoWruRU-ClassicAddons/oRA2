@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -12,10 +11,7 @@ local L = AceLibrary("AceLocale-2.2"):new("oRALReady")
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["ready"] = true,
-	["readyleader"] = true,
 	["Options for ready checks and votes."] = true,
-	["sound"] = true,
 	["Sound"] = true,
 	["Toggle an audio warning upon a ready check or vote."] = true,
 	["Ready"] = true,
@@ -24,7 +20,6 @@ L:RegisterTranslations("enUS", function() return {
 	["Yes"] = true,
 	["No"] = true,
 	["Ready Check"] = true,
-	["check"] = true,
 	["Perform a ready check."] = true,
 	["Close"] = true,
 	["<CTRaid> %s has performed a ready check."] = true,
@@ -34,14 +29,36 @@ L:RegisterTranslations("enUS", function() return {
 	["Vote Results for: "] = true,
 	["<CTRaid> %s has performed a vote: %s"] = true,
 	["Vote"] = true,
-	["vote"] = true,
 	["Perform a vote."] = true,
 	["<vote>"] = true,
 	["Leader/Ready"] = true,
 } end)
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Options for ready checks and votes."] = "Опции для проверки готовности и голосования.",
+	["Sound"] = "Звук",
+	["Toggle an audio warning upon a ready check or vote."] = "Вкл./Выкл. звукового предупреждения при проверке готовности или голосования.",
+	["Ready"] = "Готов",
+	["Not Ready"] = "Не готов",
+	["Are you Ready?"] = "Вы готовы?",
+	["Yes"] = "Да",
+	["No"] = "Нет",
+	["Ready Check"] = "Проверка готовности",
+	["Perform a ready check."] = "Проведение проверки готовности.",
+	["Close"] = "Закрыть",
+	["<CTRaid> %s has performed a ready check."] = "<CTRaid> %s проводит проверку готовности.",
+	["AFK: "] = "АФК: ",
+	["Not Ready: "] = "Не готовы: ",
+	["Yes: %d No: %d AFK: %d"] = "Да: %d Нет: %d АФК: %d",
+	["Vote Results for: "] = "Результаты голосования для: ",
+	["<CTRaid> %s has performed a vote: %s"] = "<CTRaid> %s проводит голосование.",
+	["Vote"] = "Голосование",
+	["Perform a vote."] = "Проведение голосования.",
+	["<vote>"] = "<vote>",
+	["Leader/Ready"] = "Лидер/Готовность",
+} end)
 
+L:RegisterTranslations("koKR", function() return {
 	["Options for ready checks and votes."] = "준비확인과 투표 설정",
 	["Sound"] = "소리",
 	["Toggle an audio warning upon a ready check or vote."] = "준비확인시와 투표시에 경고음 재생 기능을 토글합니다.",
@@ -66,10 +83,7 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
-	["ready"] = "就位确认",
-	["readyleader"] = "就位确认与投票助手",
 	["Options for ready checks and votes."] = "就位确认与投票设置",
-	["sound"] = "声音",
 	["Sound"] = "声音",
 	["Toggle an audio warning upon a ready check or vote."] = "就位确认与投票时播放音效",
 	["Ready"] = "就位确认",
@@ -78,7 +92,6 @@ L:RegisterTranslations("zhCN", function() return {
 	["Yes"] = "是",
 	["No"] = "否",
 	["Ready Check"] = "就位确认",
-	["check"] = "检查",
 	["Perform a ready check."] = "进行检查",
 	["Close"] = "关闭",
 	["<CTRaid> %s has performed a ready check."] = "<CTRaid>%s正在进行就位检查",
@@ -88,17 +101,13 @@ L:RegisterTranslations("zhCN", function() return {
 	["Vote Results for: "] = "投票结果：",
 	["<CTRaid> %s has performed a vote: %s"] = "<CTRaid>%s开始一场投票：%s",
 	["Vote"] = "投票",
-	["vote"] = "投票",
 	["Perform a vote."] = "进行投票",
 	["<vote>"] = "<vote>",
 	["Leader/Ready"] = "Leader/Ready",
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	["ready"] = "就位確認",
-	["readyleader"] = "readyleader",
 	["Options for ready checks and votes."] = "就位確認與投票選項",
-	["sound"] = "聲音",
 	["Sound"] = "聲音",
 	["Toggle an audio warning upon a ready check or vote."] = "就位確認與投票時播放音效",
 	["Ready"] = "已就緒",
@@ -107,7 +116,6 @@ L:RegisterTranslations("zhTW", function() return {
 	["Yes"] = "是",
 	["No"] = "否",
 	["Ready Check"] = "就位確認",
-	["check"] = "檢查",
 	["Perform a ready check."] = "進行就位確認",
 	["Close"] = "關閉",
 	["<CTRaid> %s has performed a ready check."] = "<CTRaid>%s正在進行就位確認",
@@ -117,17 +125,13 @@ L:RegisterTranslations("zhTW", function() return {
 	["Vote Results for: "] = "投票結果：",
 	["<CTRaid> %s has performed a vote: %s"] = "<CTRaid>%s開始一場投票：%s",
 	["Vote"] = "投票",
-	["vote"] = "投票",
 	["Perform a vote."] = "進行投票",
 	["<vote>"] = "<投票>",
 	["Leader/Ready"] = "領隊/就位確認",
 } end)
 
 L:RegisterTranslations("frFR", function() return {
-	--["ready"] = true,
-	--["readyleader"] = true,
 	["Options for ready checks and votes."] = "Options concernant les appels et les votes.",
-	--["sound"] = true,
 	["Sound"] = "Son",
 	["Toggle an audio warning upon a ready check or vote."] = "Joue ou non un avertissement sonore lors d'un appel ou d'un vote.",
 	["Ready"] = "Pr\195\170t",
@@ -136,7 +140,6 @@ L:RegisterTranslations("frFR", function() return {
 	["Yes"] = "Oui",
 	["No"] = "Non",
 	["Ready Check"] = "Appel",
-	--["check"] = true,
 	["Perform a ready check."] = "Effectue l'appel.",
 	["Close"] = "Fermer",
 	["<CTRaid> %s has performed a ready check."] = "<CTRaid> %s a commenc\195\169 l'appel.",
@@ -145,8 +148,7 @@ L:RegisterTranslations("frFR", function() return {
 	["Yes: %d No: %d AFK: %d"] = "Oui : %d Non : %d ABS : %d",
 	["Vote Results for: "] = "R\195\169sultat du vote pour : ",
 	["<CTRaid> %s has performed a vote: %s"] = "<CTRaid> %s a lanc\195\169 un vote: %s",
-	--["Vote"] = true,
-	--["vote"] = true,
+	["Vote"] = "Vote",
 	["Perform a vote."] = "Soumet un vote au raid.",
 	--["<vote>"] = true,
 	["Leader/Ready"] = "Chef/Appel",
@@ -156,37 +158,27 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRALReady = oRA:NewModule(L["readyleader"])
+oRALReady = oRA:NewModule("readyleader")
 oRALReady.defaults = {
 	sound = true,
 }
 oRALReady.leader = true
 oRALReady.name = L["Leader/Ready"]
-oRALReady.consoleCmd = L["ready"]
+oRALReady.consoleCmd = "ready"
 oRALReady.consoleOptions = {
-	type = "group",
-	desc = L["Options for ready checks and votes."],
-	name = L["Ready"],
+	type = "group", name = L["Ready"], desc = L["Options for ready checks and votes."],
 	args = {
-		[L["check"]] = {
-			name = L["Ready Check"], type = "execute",
-			desc = L["Perform a ready check."],
-			func = function()
-				oRALReady:PerformReadyCheck()
-			end,
+		check = {
+			type = "execute", name = L["Ready Check"], desc = L["Perform a ready check."],
+			func = function() oRALReady:PerformReadyCheck() end,
 			disabled = function() return not oRA:IsModuleActive(oRALReady) or not oRALReady:IsValidRequest() end,
 		},
-		[L["vote"]] = {
-			name = L["Vote"], type = "text",
-			desc = L["Perform a vote."],
+		vote = {
+			type = "text", name = L["Vote"], desc = L["Perform a vote."],
 			usage = L["<vote>"],
 			get = false,
-			set = function(v)
-				oRALReady:PerformVote(v)
-			end,
-			validate = function(v)
-				return string.find(v, "^(.+)$")
-			end,
+			set = function(v) oRALReady:PerformVote(v) end,
+			validate = function(v) return string.find(v, "^(.+)$") end,
 			disabled = function() return not oRA:IsModuleActive(oRALReady) or not oRALReady:IsValidRequest() end,
 		}
 	}

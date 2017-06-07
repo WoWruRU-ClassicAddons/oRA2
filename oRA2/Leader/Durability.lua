@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -16,12 +15,9 @@ local function reclaimtable(t) if compost then compost:Reclaim(t) end end
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["durabilityleader"] = true,
-	["durability"] = true,
 	["Durability"] = true,
 	["Leader/Durability"] = true,
 	["Options for durability checks."] = true,
-	["check"] = true,
 	["Perform durability check"] = true,
 	["Check the raid's durability."] = true,
 	["Name"] = true,
@@ -32,8 +28,21 @@ L:RegisterTranslations("enUS", function() return {
 	["Refresh"] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Durability"] = "Прочность",
+	["Leader/Durability"] = "Лидер/Прочность",
+	["Options for durability checks."] = "Опции для проверки прочности.",
+	["Perform durability check"] = "Провести проверку прочности",
+	["Check the raid's durability."] = "Проверка прочности рейда.",
+	["Name"] = "Имя",
+	["Percent"] = "Процент",
+	["Broken"] = "Сломано",
+	["Perc"] = "Процент",
+	["Close"] = "Закрыть",
+	["Refresh"] = "Обновить",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["Durability"] = "내구도",
 	["Leader/Durability"] = "공격대장/내구도",
 	["Options for durability checks."] = "내구도 확인 설정",
@@ -48,12 +57,9 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["durabilityleader"] = "durabilityleader",
-	["durability"] = "装备耐久度",
 	["Durability"] = "装备耐久度",
 	["Leader/Durability"] = "Leader/Durability",
 	["Options for durability checks."] = "耐久度选项",
-	["check"] = "检查",
 	["Perform durability check"] = "执行耐久度检查",
 	["Check the raid's durability."] = "检查团队耐久度",
 	["Name"] = "姓名",
@@ -65,12 +71,9 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["durabilityleader"] = "durabilityleader",
-	["durability"] = "裝備耐久度",
 	["Durability"] = "裝備耐久度",
 	["Leader/Durability"] = "領隊/裝備耐久度",
 	["Options for durability checks."] = "耐久度選項",
-	["check"] = "檢查",
 	["Perform durability check"] = "執行耐久度檢查",
 	["Check the raid's durability."] = "檢查團隊耐久度",
 	["Name"] = "姓名",
@@ -82,12 +85,9 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["durabilityleader"] = true,
-	--["durability"] = true,
 	["Durability"] = "Durabilit\195\169",
 	["Leader/Durability"] = "Chef/Durabilit\195\169",
 	["Options for durability checks."] = "Options concernant les v\195\169rifications des durabilit\195\169s.",
-	--["check"] = true,
 	["Perform durability check"] = "V\195\169rifier les durabilit\195\169s",
 	["Check the raid's durability."] = "V\195\169rifie les durabilit\195\169s du raid.",
 	["Name"] = "Nom",
@@ -102,23 +102,18 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRALDurability = oRA:NewModule(L["durabilityleader"])
+oRALDurability = oRA:NewModule("durabilityleader")
 oRALDurability.defaults = {
 }
 oRALDurability.leader = true
 oRALDurability.name = L["Leader/Durability"]
-oRALDurability.consoleCmd = L["durability"]
+oRALDurability.consoleCmd = "durability"
 oRALDurability.consoleOptions = {
-	type = "group",
-	desc = L["Options for durability checks."],
-	name = L["Durability"],
+	type = "group", name = L["Durability"], desc = L["Options for durability checks."],
 	args = {
-		[L["check"]] = {
-			type="execute", name = L["Perform durability check"],
-			desc = L["Check the raid's durability."],
-			func = function()
-					oRALDurability:PerformDurabilityCheck()
-				end,
+		check = {
+			type = "execute", name = L["Perform durability check"], desc = L["Check the raid's durability."],
+			func = function() oRALDurability:PerformDurabilityCheck() end,
 			disabled = function() return not oRA:IsModuleActive(oRALDurability) or not oRALDurability:IsValidRequest() end,
 		},
 	}

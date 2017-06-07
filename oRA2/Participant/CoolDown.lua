@@ -12,13 +12,17 @@ local BS = AceLibrary("Babble-Spell-2.2")
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["cd"] = true,
-	["cooldown"] = true,
-	["cooldownparticipant"] = true,
 	["Options for cooldowns."] = true,
 	["gain Soulstone Resurrection"] = true,
 	["gains Soulstone Resurrection"] = true,
 	["Participant/CoolDown"] = true,
+} end )
+
+L:RegisterTranslations("ruRU", function() return {
+	["Options for cooldowns."] = "Опции для перезарядки.",
+	["gain Soulstone Resurrection"] = "gain Soulstone Resurrection",
+	["gains Soulstone Resurrection"] = "gains Soulstone Resurrection",
+	["Participant/CoolDown"] = "Участник/Перезарядка",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -27,9 +31,6 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["cd"] = true,
-	--["cooldown"] = true,
-	--["cooldownparticipant"] = true,
 	["Options for cooldowns."] = "Options concernant les temps de recharge.",
 	["gain Soulstone Resurrection"] = "gagnez R\195\169surrection de Pierre d'\195\162me",
 	["gains Soulstone Resurrection"] = "gagne R\195\169surrection de Pierre d'\195\162me",
@@ -37,7 +38,6 @@ L:RegisterTranslations("frFR", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-
 	["Options for cooldowns."] = "재사용대기시간 설정",
 	["gain Soulstone Resurrection"] = "영혼석 보관 효과를 얻었습니다",
 	["gains Soulstone Resurrection"] = "님이 영혼석 보관 효과를 얻었습니다",
@@ -45,9 +45,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["cd"] = "冷却",
-	["cooldown"] = "冷却",
-	["cooldownparticipant"] = "cooldownparticipant",
 	["Options for cooldowns."] = "冷却监视器选项",
 	["gain Soulstone Resurrection"] = "获得灵魂石",
 	["gains Soulstone Resurrection"] = "获得灵魂石",
@@ -55,9 +52,6 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["cd"] = "冷卻",
-	["cooldown"] = "冷卻",
-	["cooldownparticipant"] = "cooldownparticipant",
 	["Options for cooldowns."] = "冷卻監視器選項",
 	["gain Soulstone Resurrection"] = "獲得靈魂石",
 	["gains Soulstone Resurrection"] = "獲得靈魂石效果",
@@ -67,15 +61,14 @@ L:RegisterTranslations("zhTW", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAPCoolDown = oRA:NewModule(L["cooldownparticipant"], "AceHook-2.1")
+oRAPCoolDown = oRA:NewModule("cooldownparticipant", "AceHook-2.1")
 oRAPCoolDown.defaults = {
 }
 oRAPCoolDown.participant = true
 oRAPCoolDown.name = L["Participant/CoolDown"]
--- oRAPCoolDown.consoleCmd = L["cd"]
+-- oRAPCoolDown.consoleCmd = "cd"
 -- oRAPCoolDown.consoleOptions = {
--- 	type = "group",
--- 	desc = L["Options for cooldowns."],
+-- 	type = "group", desc = L["Options for cooldowns."],
 -- 	args = {
 -- 	}
 -- }

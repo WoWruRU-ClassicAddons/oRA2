@@ -15,13 +15,18 @@ local surface = AceLibrary("Surface-1.0")
 
 L:RegisterTranslations("enUS", function() return {
 	["CoolDown Monitor"] = true,
-	["cooldown"] = true,
-	["cooldownoptional"] = true,
 	["Optional/CoolDown"] = true,
 	["Options for CoolDown."] = true,
 	["Toggle"] = true,
-	["toggle"] = true,
 	["Toggle the CoolDown Monitor."] = true,
+} end )
+
+L:RegisterTranslations("ruRU", function() return {
+	["CoolDown Monitor"] = "Монитор перезарядки",
+	["Optional/CoolDown"] = "Дополнительно/Перезарядка",
+	["Options for CoolDown."] = "Опции для перезарядки.",
+	["Toggle"] = "Вкл./Выкл.",
+	["Toggle the CoolDown Monitor."] = "Вкл./Выкл. монитор перезарядки.",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -34,34 +39,25 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	["CoolDown Monitor"] = "冷却监视器",
-	["cooldown"] = "冷却",
-	["cooldownoptional"] = "cooldownoptional",
 	["Optional/CoolDown"] = "Optional/CoolDown",
 	["Options for CoolDown."] = "冷却监视器的选项",
 	["Toggle"] = "显示",
-	["toggle"] = "显示",
 	["Toggle the CoolDown Monitor."] = "显示冷却监视器",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
 	["CoolDown Monitor"] = "冷卻監視器",
-	["cooldown"] = "冷卻",
-	["cooldownoptional"] = "cooldownoptional",
 	["Optional/CoolDown"] = "可選/冷卻",
 	["Options for CoolDown."] = "冷卻監視器的選項",
 	["Toggle"] = "顯示",
-	["toggle"] = "顯示",
 	["Toggle the CoolDown Monitor."] = "顯示冷卻監視器",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
 	["CoolDown Monitor"] = "Surveillance des \"cooldowns\"",
-	--["cooldown"] = true,
-	--["cooldownoptional"] = true,
 	["Optional/CoolDown"] = "Optionnel/Temps de recharge",
 	["Options for CoolDown."] = "Options concernant les temps de recharge.",
 	["Toggle"] = "Afficher",
-	--["toggle"] = true,
 	["Toggle the CoolDown Monitor."] = "Affiche ou non la surveillance des temps de recharge.",
 } end )
 
@@ -69,26 +65,21 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAOCoolDown = oRA:NewModule(L["cooldownoptional"], "CandyBar-2.0")
+oRAOCoolDown = oRA:NewModule("cooldownoptional", "CandyBar-2.0")
 oRAOCoolDown.defaults = {
 	hidden = false,
 	cooldowns = {},
 }
 oRAOCoolDown.optional = true
 oRAOCoolDown.name = L["Optional/CoolDown"]
-oRAOCoolDown.consoleCmd = L["cooldown"]
+oRAOCoolDown.consoleCmd = "cooldown"
 oRAOCoolDown.consoleOptions = {
-	type = "group",
-	desc = L["Options for CoolDown."],
-	name = L["CoolDown Monitor"],
+	type = "group", name = L["CoolDown Monitor"], desc = L["Options for CoolDown."],
 	args = {
-		[L["toggle"]] = {
-			type = "toggle", name = L["Toggle"],
-			desc = L["Toggle the CoolDown Monitor."],
+		toggle = {
+			type = "toggle", name = L["Toggle"], desc = L["Toggle the CoolDown Monitor."],
 			get = function() return not oRAOCoolDown.db.profile.hidden end,
-			set = function(v)
-					oRAOCoolDown:ToggleView()
-			end,
+			set = function(v) oRAOCoolDown:ToggleView() end,
 		},
 	}
 }

@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -12,20 +11,29 @@ local L = AceLibrary("AceLocale-2.2"):new("oRALRaidWarn")
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["rw"] = true,
-	["raidwarningleader"] = true,
 	["Raidwarning"] = true,
 	["Options for raid warning."] = true,
 	["Leader/RaidWarn"] = true,
 	["Send"] = true,
 	["Send an RS Message."] = true,
 	["<message>"] = true,
-	["ToRaid"] = true,
-	["OldStyle"] = true,
 	["To Raid"] = true,
 	["Old Style"] = true,
 	["Send RS Messages to Raid as well."] = true,
 	["Use CTRA RS Messages instead of RaidWarning."] = true,
+} end )
+
+L:RegisterTranslations("ruRU", function() return {
+	["Raidwarning"] = "Рейдовые предупреждения",
+	["Options for raid warning."] = "Опции для рейдовых предупреждений.",
+	["Leader/RaidWarn"] = "Лидер/Предупреждения",
+	["Send"] = "Отправить",
+	["Send an RS Message."] = "Отправить RS сообщение",
+	["<message>"] = "<сообщение>",
+	["To Raid"] = "В рейд",
+	["Old Style"] = "Старый стиль",
+	["Send RS Messages to Raid as well."] = "Отправить RS сообщения также в канал рейда.",
+	["Use CTRA RS Messages instead of RaidWarning."] = "Использовать CTRA RS сообщения вместо рейдовых предупреждений.",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
@@ -35,8 +43,6 @@ L:RegisterTranslations("koKR", function() return {
 	["Send"] = "보내기",
 	["Send an RS Message."] = "RS메세지로 보내기",
 	["<message>"] = "<메세지>",
-	["ToRaid"] = "공격대",
-	["OldStyle"] = "옛날방식",
 	["To Raid"] = "공격대에 보내기",
 	["Old Style"] = "옛 방식 사용",
 	["Send RS Messages to Raid as well."] = "RS 메세지를 공격대 대화로도 표시합니다.",
@@ -44,16 +50,12 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["rw"] = "rw",
-	["raidwarningleader"] = "raidwarningleader",
 	["Raidwarning"] = "团队报警",
 	["Options for raid warning."] = "团队警报选项.",
 	["Leader/RaidWarn"] = "Leader/RaidWarn",
 	["Send"] = "发送",
 	["Send an RS Message."] = "发送一条RS消息",
 	["<message>"] = "<message>",
-	["ToRaid"] = "发送到RAID",
-	["OldStyle"] = "老样式",
 	["To Raid"] = "进行RAID",
 	["Old Style"] = "老样式",
 	["Send RS Messages to Raid as well."] = "RS同时发送一条消息到团队聊天频道",
@@ -61,16 +63,12 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["rw"] = "rw",
-	["raidwarningleader"] = "raidwarningleader",
 	["Raidwarning"] = "團隊報警",
 	["Options for raid warning."] = "團隊警報選項",
 	["Leader/RaidWarn"] = "領隊/團隊報警",
 	["Send"] = "發送",
 	["Send an RS Message."] = "發送RS訊息",
 	["<message>"] = "<訊息>",
-	["ToRaid"] = "發送到團隊",
-	["OldStyle"] = "舊式風格",
 	["To Raid"] = "發送到團隊",
 	["Old Style"] = "舊式風格",
 	["Send RS Messages to Raid as well."] = "發送RS訊息時也發送到團隊頻道",
@@ -78,16 +76,12 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["rw"] = true,
-	--["raidwarningleader"] = true,
 	["Raidwarning"] = "Avertissement du raid",
 	["Options for raid warning."] = "Options concernant l'avertissement du raid.",
 	["Leader/RaidWarn"] = "Chef/AvertirRaid",
 	["Send"] = "Envoyer",
 	["Send an RS Message."] = "Envoye un message RS.",
-	--["<message>"] = true,
-	--["ToRaid"] = true,
-	--["OldStyle"] = true,
+	["<message>"] = "<message>",
 	["To Raid"] = "Au raid",
 	["Old Style"] = "Ancienne m\195\169thode",
 	["Send RS Messages to Raid as well."] = "Envoye les messages RS \195\169galement au canal Raid.",
@@ -98,47 +92,35 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRALRaidWarn = oRA:NewModule(L["raidwarningleader"])
+oRALRaidWarn = oRA:NewModule("raidwarningleader")
 oRALRaidWarn.defaults = {
 	oldstyle = false,
 	toraid = false,
 }
 oRALRaidWarn.leader = true
 oRALRaidWarn.name = L["Leader/RaidWarn"]
-oRALRaidWarn.consoleCmd = L["rw"]
+oRALRaidWarn.consoleCmd = "rw"
 oRALRaidWarn.consoleOptions = {
-	type = "group",
-	desc = L["Options for raid warning."],
-	name = L["Raidwarning"],
+	type = "group", name = L["Raidwarning"], desc = L["Options for raid warning."],
 	args = {
-		[L["Send"]] = {
-			name = L["Send"], type = "text",
-			desc = L["Send an RS Message."],
+		send = {
+			type = "text", name = L["Send"], desc = L["Send an RS Message."],
 			usage = L["<message>"],
 			get = false,
-			set = function(v)
-				oRALRaidWarn:SendRS(v)
-			end,
-			validate = function(v)
-				return string.find(v, "^(.+)$")
-			end,
+			set = function(v) oRALRaidWarn:SendRS(v) end,
+			validate = function(v) return string.find(v, "^(.+)$") end,
 			disabled = function() return not oRA:IsModuleActive(oRALRaidWarn) or not oRALRaidWarn:IsValidRequest() end,
 		},
-		[L["ToRaid"]] = {
-			name = L["To Raid"], type = "toggle",
-			desc = L["Send RS Messages to Raid as well."],
+		toraid = {
+			type = "toggle", name = L["To Raid"], desc = L["Send RS Messages to Raid as well."],
 			get = function() return oRALRaidWarn.db.profile.toraid end,
-			set = function(v)
-				oRALRaidWarn.db.profile.toraid = v
+			set = function(v) oRALRaidWarn.db.profile.toraid = v
 			end,	
 		},
-		[L["OldStyle"]] = {
-			name = L["Old Style"], type = "toggle",
-			desc = L["Use CTRA RS Messages instead of RaidWarning."],
+		oldstyle = {
+			type = "toggle", name = L["Old Style"], desc = L["Use CTRA RS Messages instead of RaidWarning."],
 			get = function() return oRALRaidWarn.db.profile.oldstyle end,
-			set = function(v)
-				oRALRaidWarn.db.profile.oldstyle = v
-			end,
+			set = function(v) oRALRaidWarn.db.profile.oldstyle = v end,
 		},
 	}
 }

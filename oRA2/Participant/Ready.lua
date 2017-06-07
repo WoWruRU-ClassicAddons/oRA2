@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -13,29 +12,42 @@ local surface = AceLibrary("Surface-1.0")
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["ready"] = true,
-	["readyparticipant"] = true,
 	["Options for ready checks and votes."] = true,
-	["sound"] = true,
 	["Sound"] = true,
 	["Toggle an audio warning upon a ready check or vote."] = true,
 	["Ready"] = true,
+	["Ready_1"] = "Ready",
 	["Not Ready"] = true,
 	["Are you Ready?"] = true,
 	["Yes"] = true,
 	["No"] = true,
 	["Ready Check"] = true,
-	["check"] = true,
 	["Vote"] = true,
-	["vote"] = true,
 	["Perform a vote."] = true,
 	["Participant/Ready"] = true,
 	["Closing Vote"] = true,
 	["Closing Check"] = true,
 } end)
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Options for ready checks and votes."] = "Опции для проверки готовности и голосования.",
+	["Sound"] = "Звук",
+	["Toggle an audio warning upon a ready check or vote."] = "Вкл./Выкл. звукового предупреждения при проверке готовности или голосования.",
+	["Ready"] = "Готовность",
+	["Ready_1"] = "Готов",
+	["Not Ready"] = "Не готов",
+	["Are you Ready?"] = "Вы готовы?",
+	["Yes"] = "Да",
+	["No"] = "Нет",
+	["Ready Check"] = "Проверка готовности",
+	["Vote"] = "Голосование",
+	["Perform a vote."] = "Провести голосование.",
+	["Participant/Ready"] = "Участник/Готовность",
+	["Closing Vote"] = "Завершить голосование",
+	["Closing Check"] = "Завершить проверку",
+} end)
 
+L:RegisterTranslations("koKR", function() return {
 	["Options for ready checks and votes."] = "준비 확인과 투표 설정",
 	["Sound"] = "소리",
 	["Toggle an audio warning upon a ready check or vote."] = "투표나 준비 확인시 경고음 토글",
@@ -45,7 +57,6 @@ L:RegisterTranslations("koKR", function() return {
 	["Yes"] = "예",
 	["No"] = "아니오",
 	["Ready Check"] = "준비 확인",
-	["check"] = "확인",
 	["Vote"] = "투표",
 	["Perform a vote."] = "투표를 실시합니다.",
 	["Participant/Ready"] = "부분/준비",
@@ -54,10 +65,7 @@ L:RegisterTranslations("koKR", function() return {
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
-	["ready"] = "准备",
-	["readyparticipant"] = "readyparticipant",
 	["Options for ready checks and votes."] = "准备检查和投票的选项",
-	["sound"] = "声音",
 	["Sound"] = "声音",
 	["Toggle an audio warning upon a ready check or vote."] = "准备检查或投票时发声",
 	["Ready"] = "准备就绪",
@@ -66,9 +74,7 @@ L:RegisterTranslations("zhCN", function() return {
 	["Yes"] = "是",
 	["No"] = "否",
 	["Ready Check"] = "准备检查",
-	["check"] = "检查",
 	["Vote"] = "投票",
-	["vote"] = "投票",
 	["Perform a vote."] = "进行投票",
 	["Participant/Ready"] = "Participant/Ready",
 	["Closing Vote"] = "关闭投票",
@@ -76,10 +82,7 @@ L:RegisterTranslations("zhCN", function() return {
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
-	["ready"] = "就位確認",
-	["readyparticipant"] = "readyparticipant",
 	["Options for ready checks and votes."] = "就位確認與投票選項",
-	["sound"] = "聲音",
 	["Sound"] = "聲音",
 	["Toggle an audio warning upon a ready check or vote."] = "就位確認與投票時播放音效",
 	["Ready"] = "已就緒",
@@ -88,9 +91,7 @@ L:RegisterTranslations("zhTW", function() return {
 	["Yes"] = "是",
 	["No"] = "否",
 	["Ready Check"] = "就位確認",
-	["check"] = "檢查",
 	["Vote"] = "投票",
-	["vote"] = "投票",
 	["Perform a vote."] = "進行投票",
 	["Participant/Ready"] = "隊員/就位確認",
 	["Closing Vote"] = "關閉投票",
@@ -98,10 +99,7 @@ L:RegisterTranslations("zhTW", function() return {
 } end)
 
 L:RegisterTranslations("frFR", function() return {
-	--["ready"] = true,
-	--["readyparticipant"] = true,
 	["Options for ready checks and votes."] = "Options concernant les appels et les votes.",
-	--["sound"] = true,
 	["Sound"] = "Son",
 	["Toggle an audio warning upon a ready check or vote."] = "Joue ou non un avertissement sonore lors d'un appel ou d'un vote.",
 	["Ready"] = "Pr\195\170t",
@@ -110,9 +108,7 @@ L:RegisterTranslations("frFR", function() return {
 	["Yes"] = "Oui",
 	["No"] = "Non",
 	["Ready Check"] = "Appel",
-	--["check"] = true,
 	["Vote"] = "Vote",
-	--["vote"] = true,
 	["Perform a vote."] = "Soumet un vote.",
 	["Participant/Ready"] = "Participant/Appel",
 	["Closing Vote"] = "Cl\195\180ture du vote",
@@ -123,21 +119,18 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAPReady = oRA:NewModule(L["readyparticipant"], "CandyBar-2.0")
+oRAPReady = oRA:NewModule("readyparticipant", "CandyBar-2.0")
 oRAPReady.defaults = {
 	sound = true,
 }
 oRAPReady.participant = true
 oRAPReady.name = L["Participant/Ready"]
-oRAPReady.consoleCmd = L["ready"]
+oRAPReady.consoleCmd = "ready"
 oRAPReady.consoleOptions = {
-	type = "group",
-	desc = L["Options for ready checks and votes."],
-	name = L["Ready"],
+	type = "group", name = L["Ready"], desc = L["Options for ready checks and votes."],
 	args = {
-		[L["sound"]] = {
-			name = L["Sound"], type = "toggle",
-			desc = L["Toggle an audio warning upon a ready check or vote."],
+		sound = {
+			type = "toggle",name = L["Sound"], desc = L["Toggle an audio warning upon a ready check or vote."],
 			get = function() return oRAPReady.db.profile.sound end,
 			set = function(v)
 				oRAPReady.db.profile.sound = v
@@ -262,7 +255,7 @@ end
 function oRAPReady:ShowReady( author )
 	self.frames.cheader:SetText(L["Ready Check"])
 	self.frames.cinfo:SetText("|cffffffff"..author.. "|r: " .. L["Are you Ready?"] )
-	self.frames.leftbuttontext:SetText(L["Ready"])
+	self.frames.leftbuttontext:SetText(L["Ready_1"])
 	self.frames.rightbuttontext:SetText(L["Not Ready"])
 
 	self.frames.leftbutton:SetScript("OnClick",
@@ -396,5 +389,4 @@ function oRAPReady:SetupFrames()
 	self.frames.rightbuttontext:SetFontObject(GameFontHighlight)
 	self.frames.rightbuttontext:SetText("right")
 	self.frames.rightbuttontext:SetAllPoints(self.frames.rightbutton)
-
 end

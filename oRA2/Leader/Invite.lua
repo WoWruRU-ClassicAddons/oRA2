@@ -11,8 +11,6 @@ local L = AceLibrary("AceLocale-2.2"):new("oRALInvite")
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["inviteleader"] = true,
-	["invite"] = true,
 	["Invite"] = true,
 	["Leader/Invite"] = true,
 	["<oRA> Sorry, the group is full."] = true,
@@ -29,27 +27,53 @@ L:RegisterTranslations("enUS", function() return {
 	["You have no-one in your Auto-Promote list"] = true,
 	["Options for invite."] = true,
 	["Autopromote"] = true,
-	["autopromote"] = true,
 	["Set/Unset an autopromotion."] = true,
 	["<name>"] = true,
-	["keyword"] = true,
 	["Keyword"] = true,
 	["Set/Unset an invitation keyword."] = true,
-	["<keyword>"] = true,	
-	["disband"] = true,
+	["<keyword>"] = true,
 	["Disband"] = true,
 	["Disband the raid."] = true,
-	["list"] = true,
 	["List"] = true,
 	["List autopromotions."] = true,
-	["guild"] = true,
 	["Invite Guild"] = true,
 	["Invite all characters of the specified level in the guild to raid."] = true,
 	["<level or empty>"] = true,
 	["You are not in a guild."] = true,
 	["You are not in a raid group."] = true,
 	["All level %d or higher characters will be invited to raid in 10 seconds. Please leave your groups."] = true,
-	["off"] = true,
+} end )
+
+L:RegisterTranslations("ruRU", function() return {
+	["Invite"] = "Приглашение",
+	["Leader/Invite"] = "Лидер/Приглашение",
+	["<oRA> Sorry, the group is full."] = "<oRA> Извините, группа полна.",
+	["Inviting: "] = "Приглашается: ",
+	["^([^%s]+) has joined the raid group"] = "^([^%s]+) присоединяется к рейдовой группе.",
+	["Keyword inviting disabled."] = "Ключевое слово приглашения отключено.",
+	["Invitation keyword set to: "] = "Ключевое слово приглашения  установлено на: ",
+	["To turn off keyword inviting set it to 'off'."] = "Чтобы отключить ключевое слово приглашения, установите его на 'off'.",
+	["<oRA> Raid disbanding on request by: "] = "<oRA> Рейдовый роспуск по требованию: ",
+	["Disabling Auto-Promote for: "] = "Выключить Автоповышение для: ",
+	["Enabling Auto-Promote for: "] = "Включить Автоповышение для: ",
+	["Autopromoting: "] = "Автоповышение: ",
+	["You have no-one in your Auto-Promote list"] = "Никого нет в вашем списке Автоповышения",
+	["Options for invite."] = "Опции для приглашений.",
+	["Autopromote"] = "Автоповышение",
+	["Set/Unset an autopromotion."] = "Установить/Удалить автоповышение.",
+	["<name>"] = "<name>",
+	["Keyword"] = "Ключевое слово",
+	["Set/Unset an invitation keyword."] = "Установить/удалить ключевое слово приглашения.",
+	["<keyword>"] = "<keyword>",
+	["Disband"] = "Распустить",
+	["Disband the raid."] = "Роспуск рейда.",
+	["List"] = "Список",
+	["List autopromotions."] = "Список автоповышения.",
+	["Invite Guild"] = "Приглашение гильдии",
+	["Invite all characters of the specified level in the guild to raid."] = "Приглашение всех персонажей гильдии указанного уровня в рейд.",
+	["You are not in a guild."] = "Вы не в гильдии.",
+	["You are not in a raid group."] = "Вы не в рейдовой группе.",
+	["All level %d or higher characters will be invited to raid in 10 seconds. Please leave your groups."] = "Все персонажи %d уровня или выше будут приглашены в рейд через 10 секунд. Пожалуйста, покиньте ваши группы.",
 } end )
 
 L:RegisterTranslations("deDE", function() return {
@@ -82,7 +106,6 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-
 	["Invite"] = "초대",
 	["Leader/Invite"] = "공격대장/초대",
 	["<oRA> Sorry, the group is full."] = "<oRA> 죄송합니다. 공격대의 정원이 찼습니다",
@@ -113,12 +136,9 @@ L:RegisterTranslations("koKR", function() return {
 	["You are not in a guild."] = "길드에 속해 있지 않습니다",
 	["You are not in a raid group."] = "공격대에 속해 있지 않습니다",
 	["All level 60 characters will be invited to raid in 10 seconds. Please leave your groups."] = "10초 동안 60레벨의 길드원을 공격대에 초대합니다. 파티에서 나와 주세요.",
-	["off"] = "끔",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["inviteleader"] = "邀请助手",
-	["invite"] = "邀请",
 	["Invite"] = "邀请",
 	["Leader/Invite"] = "Leader/Invite",
 	["<oRA> Sorry, the group is full."] = "<oRA>抱歉，团队已满",
@@ -135,31 +155,23 @@ L:RegisterTranslations("zhCN", function() return {
 	["You have no-one in your Auto-Promote list"] = "你的自动提升列表为空",
 	["Options for invite."] = "邀请助手选项",
 	["Autopromote"] = "自动提升",
-	["autopromote"] = "自动提升",
 	["Set/Unset an autopromotion."] = "设定/取消自动提升",
 	["<name>"] = "<名字>",
-	["keyword"] = "关键字",
 	["Keyword"] = "关键字",
 	["Set/Unset an invitation keyword."] = "设定/取消邀请关键字",
-	["<keyword>"] = "关键词",	
-	["disband"] = "解散",
+	["<keyword>"] = "关键词",
 	["Disband"] = "解散",
 	["Disband the raid."] = "解散团队",
-	["list"] = "列表",
 	["List"] = "列表",
 	["List autopromotions."] = "自动提升列表",
-	["guild"] = "公会",
 	["Invite Guild"] = "公会邀请",
 	["Invite all level 60 characters in the guild to raid."] = "邀请公会中所有的60级玩家",
 	["You are not in a guild."] = "你不在一个公会中",
 	["You are not in a raid group."] = "你不在一个团队中",
 	["All level 60 characters will be invited to raid in 10 seconds. Please leave your groups."] = "所有60级人物都将在10秒后邀请到团队中。请离开你当前队伍。",
-	["off"] = "关闭",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["inviteleader"] = "inviteleader",
-	["invite"] = "邀請",
 	["Invite"] = "邀請",
 	["Leader/Invite"] = "領隊/邀請",
 	["<oRA> Sorry, the group is full."] = "<oRA>抱歉，團隊已滿。",
@@ -176,31 +188,23 @@ L:RegisterTranslations("zhTW", function() return {
 	["You have no-one in your Auto-Promote list"] = "你的自動提升列表為空",
 	["Options for invite."] = "邀請助手選項",
 	["Autopromote"] = "自動提升",
-	["autopromote"] = "自動提升",
 	["Set/Unset an autopromotion."] = "設定/取消自動提升",
 	["<name>"] = "<名字>",
-	["keyword"] = "關鍵字",
 	["Keyword"] = "關鍵字",
 	["Set/Unset an invitation keyword."] = "設定/取消邀請關鍵字",
-	["<keyword>"] = "關鍵詞",	
-	["disband"] = "解散",
+	["<keyword>"] = "關鍵詞",
 	["Disband"] = "解散",
 	["Disband the raid."] = "解散團隊",
-	["list"] = "列表",
 	["List"] = "列表",
 	["List autopromotions."] = "自動提升列表",
-	["guild"] = "公會",
 	["Invite Guild"] = "公會邀請",
 	["Invite all level 60 characters in the guild to raid."] = "邀請公會中所有的60級玩家",
 	["You are not in a guild."] = "你不在一個公會中",
 	["You are not in a raid group."] = "你不在一個團隊中",
 	["All level 60 characters will be invited to raid in 10 seconds. Please leave your groups."] = "所有60級人物都將在10秒後邀請到團隊中。請離開你當前隊伍。",
-	["off"] = "關閉",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["inviteleader"] = true,
-	--["invite"] = true,
 	["Invite"] = "Invitation",
 	["Leader/Invite"] = "Chef/Invitation",
 	["<oRA> Sorry, the group is full."] = "<oRA> D\195\169sol\195\169, le groupe est complet.",
@@ -218,81 +222,61 @@ L:RegisterTranslations("frFR", function() return {
 	["Autopromote"] = "Promotion automatique",
 	["Set/Unset an autopromotion."] = "Ajoute/Enl\195\168ve une personne de la liste des personnes promues automatiquement.",
 	["<name>"] = "<nom>",
-	--["keyword"] = true,
 	["Keyword"] = "Mot-cl\195\169",
 	["Set/Unset an invitation keyword."] = "D\195\169termine/Enl\195\168ve le mot-cl\195\169 d'invitation.",
 	["<keyword>"] = "<mot-cl\195\169>",
-	--["disband"] = true,
 	["Disband"] = "Dissoudre",
 	["Disband the raid."] = "Dissous le raid.",
-	--["list"] = true,
 	["List"] = "Liste",
 	["List autopromotions."] = "Affiche la liste des personnes promues automatiquement.",
-	--["guild"] = true,
 	["Invite Guild"] = "Inviter la guilde",
 	["Invite all level 60 characters in the guild to raid."] = "Invite tous les personnages de niveau 60 de la guilde dans le raid.",
 	["You are not in a guild."] = "Vous n'\195\170tes pas dans une guilde.",
 	["You are not in a raid group."] = "Vous n'\195\170tes pas dans un groupe de raid.",
 	["All level 60 characters will be invited to raid in 10 seconds. Please leave your groups."] = "Tous les personnages de niveau 60 seront invit\195\169s dans le raid dans 10 secondes. Veuillez quitter vos groupes.",
-	--["off"] = true,
 } end )
 
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-oRALInvite = oRA:NewModule(L["inviteleader"])
+oRALInvite = oRA:NewModule("inviteleader")
 oRALInvite.defaults = {
 }
 oRALInvite.leader = true
 oRALInvite.name = L["Leader/Invite"]
 oRALInvite.shouldEnable = true -- Prevents the module from disabling when out of raids.
-oRALInvite.consoleCmd = L["invite"]
+oRALInvite.consoleCmd = "invite"
 oRALInvite.consoleOptions = {
-	type = "group",
-	desc = L["Options for invite."],
-	name = L["Invite"],
+	type = "group", name = L["Invite"], desc = L["Options for invite."],
 	args = {
-		[L["autopromote"]] = {
-			name = L["Autopromote"], type = "text",
-			desc = L["Set/Unset an autopromotion."],
+		autopromote = {
+			type = "text", name = L["Autopromote"], desc = L["Set/Unset an autopromotion."],
 			usage = L["<name>"],
 			get = function() return "" end,
-			set = function(v)
-				oRALInvite:SetAutoPromote(v)
-			end,
+			set = function(v) oRALInvite:SetAutoPromote(v) end,
 			get = false,
-			validate = function(v)
-				return string.find(v, "(.*)")
-			end,
+			validate = function(v) return string.find(v, "(.*)") end,
 		},
-		[L["list"]] = {
-			name = L["List"], type = "execute",
-			desc = L["List autopromotions."],
+		list = {
+			type = "execute", name = L["List"], desc = L["List autopromotions."],
 			func = function() oRALInvite:ShowPromoteList() end,
 		},
-		[L["disband"]] = {
-			name = L["Disband"], type = "execute",
-			desc = L["Disband the raid."],
+		disband = {
+			type = "execute", name = L["Disband"], desc = L["Disband the raid."],
 			func = function() oRALInvite:DisbandRaid() end,
 			disabled = function() return not oRALInvite:IsValidRequest() end,
 		},
-		[L["keyword"]] = {
-			name = L["Keyword"], type = "text",
-			desc = L["Set/Unset an invitation keyword."],
+		keyword = {
+			type = "text", name = L["Keyword"], desc = L["Set/Unset an invitation keyword."],
 			usage = L["<keyword>"],
 			get = function() return oRALInvite.db.profile.keyword or "" end,
-			set = function(v)
-				oRALInvite:SetKeyword(v)
-			end,
-			validate = function(v)
-				return string.find(v, "(.*)")
-			end,
+			set = function(v) oRALInvite:SetKeyword(v) end,
+			validate = function(v) return string.find(v, "(.*)") end,
 			disabled = function() return not oRA:IsModuleActive(oRALInvite) end,
 		},
-		[L["guild"]] = {
-			name = L["Invite Guild"], type = "text",
-			desc = L["Invite all characters of the specified level in the guild to raid."],
+		guild = {
+			type = "text", name = L["Invite Guild"], desc = L["Invite all characters of the specified level in the guild to raid."],
 			usage = L["<level or empty>"],
 			get = false, set = function(input)
 				if input and input == "" or string.gsub(input, " ", "") == "" then
@@ -496,4 +480,3 @@ function oRALInvite:IsEmpty( t )
 	end
 	return true
 end
-

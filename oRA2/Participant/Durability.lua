@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -13,58 +12,49 @@ local G = AceLibrary("Gratuity-2.0")
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["durability"] = true,
 	["Participant/Durability"] = true,
 	["Options for durability checks."] = true,
-	["durabilityparticipant"] = true,
-	
+} end )
+
+L:RegisterTranslations("ruRU", function() return {
+	["Participant/Durability"] = "Участник/Прочность",
+	["Options for durability checks."] = "Опции для проверки прочности.",
 } end )
 
 L:RegisterTranslations("koKR", function() return {
-
 	["Participant/Durability"] = "부분/내구도",
 	["Options for durability checks."] = "내구도 설정",
-	
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["durability"] = "耐久度",
 	["Participant/Durability"] = "Participant/Durability",
 	["Options for durability checks."] = "耐久度检查选项",
-	["durabilityparticipant"] = "durabilityparticipant",
-	
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["durability"] = "耐久度",
 	["Participant/Durability"] = "隊員/耐久度",
 	["Options for durability checks."] = "耐久度檢查選項",
-	["durabilityparticipant"] = "durabilityparticipant",
-	
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["durability"] = true,
 	["Participant/Durability"] = "Participant/Durabilit\195\169",
 	["Options for durability checks."] = "Options concernant les v\195\169rifications des durabilit\195\169s.",
-	--["durabilityparticipant"] = true,
 } end )
 
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-oRAPDurability = oRA:NewModule(L["durabilityparticipant"])
+oRAPDurability = oRA:NewModule("durabilityparticipant")
 oRAPDurability.defaults = {
 }
 oRAPDurability.participant = true
 oRAPDurability.name = L["Participant/Durability"]
--- oRAPDurability.consoleCmd = L["durability"]
+-- oRAPDurability.consoleCmd = "durability"
 -- oRAPDurability.consoleOptions = {
---        type = "group",
---        desc = L["Options for durability checks."],
---        args = {
---        }
+--	type = "group", desc = L["Options for durability checks."],
+--	args = {
+--	}
 -- }
 
 ------------------------------

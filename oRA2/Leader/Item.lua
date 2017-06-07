@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -27,8 +26,6 @@ local reagents = {
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["itemleader"] = true,
-	["item"] = true,
 	["Options for item checks."] = true,
 	["SacredCandle"] = "Sacred Candle",
 	["ArcanePowder"] = "Arcane Powder",
@@ -51,13 +48,36 @@ L:RegisterTranslations("enUS", function() return {
 	["<item>"] = true,
 	["Perform reagent check"] = true,
 	["Check the raid for reagents."] = true,
-	["check"] = true,
-	["reagent"] = true,
 	["Leader/Item"] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Options for item checks."] = "Опции для проверки предметов.",
+	["SacredCandle"] = "Священная свеча",
+	["ArcanePowder"] = "Порошок чар",
+	["WildThornroot"] = "Дикий шипокорень",
+	["Ankh"] = "Крест",
+	["SymbolofDivinity"] = "Знак божественности",
+	["FlashPowder"] = "Воспламеняющийся порошок",
+	["SoulShard"] = "Осколок души",
+	["Checks Disabled"] = "Проверки отключены",
+	["Items"] = "Предметы",
+	["Reagents"] = "Реагенты",
+	["Close"] = "Закрыть",
+	["Refresh"] = "Обновить",
+	["Name"] = "Имя",
+	["Item"] = "Предмет",
+	["Amount"] = "Количество",
+	["Nr"] = "Nr",
+	["Perform item check"] = "Провести проверку предметов",
+	["Check the raid for an item."] = "Проверка рейда на наличие предметов.",
+	["<item>"] = "<предмет>",
+	["Perform reagent check"] = "Провести проверку реагентов",
+	["Check the raid for reagents."] = "роверка рейда на наличие реагентов.",
+	["Leader/Item"] = "Лидер/Предметы",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["Options for item checks."] = "아이템 확인 설정",
 	["SacredCandle"] = "성스러운 양초",
 	["ArcanePowder"] = "불가사의한 가루",
@@ -84,8 +104,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["itemleader"] = "itemleader",
-	["item"] = "物品",
 	["Options for item checks."] = "物品检查选项",
 	["SacredCandle"] = "神圣蜡烛",
 	["ArcanePowder"] = "魔粉",
@@ -108,14 +126,10 @@ L:RegisterTranslations("zhCN", function() return {
 	["<item>"] = "<物品>",
 	["Perform reagent check"] = "进行施法材料检查",
 	["Check the raid for reagents."] = "对团队进行施法材料检查",
-	["check"] = "检查",
-	["reagent"] = "施法材料",
 	["Leader/Item"] = "Leader/Item",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["itemleader"] = "itemleader",
-	["item"] = "物品",
 	["Options for item checks."] = "物品檢查選項",
 	["SacredCandle"] = "神聖蠟燭",
 	["ArcanePowder"] = "魔粉",
@@ -138,8 +152,6 @@ L:RegisterTranslations("zhTW", function() return {
 	["<item>"] = "<物品>",
 	["Perform reagent check"] = "進行施法材料檢查",
 	["Check the raid for reagents."] = "對團隊進行施法材料檢查",
-	["check"] = "檢查",
-	["reagent"] = "施法材料",
 	["Leader/Item"] = "Leader/Item",
 } end )
 
@@ -154,8 +166,6 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["itemleader"] = true,
-	--["item"] = true,
 	["Options for item checks."] = "Options concernant les v\195\169rifications des objets.",
 	["SacredCandle"] = "Bougie sacr\195\169e",
 	["ArcanePowder"] = "Poudre des arcanes",
@@ -178,8 +188,6 @@ L:RegisterTranslations("frFR", function() return {
 	["<item>"] = "<objet>",
 	["Perform reagent check"] = "V\195\169rifier les composants",
 	["Check the raid for reagents."] = "V\195\169rifie les composants du raid.",
-	--["check"] = true,
-	--["reagent"] = true,
 	["Leader/Item"] = "Chef/Objet",
 } end )
 
@@ -187,39 +195,28 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRALItem = oRA:NewModule(L["itemleader"])
+oRALItem = oRA:NewModule("itemleader")
 oRALItem.defaults = {
 }
 oRALItem.leader = true
 oRALItem.name = L["Leader/Item"]
-oRALItem.consoleCmd = L["item"]
+oRALItem.consoleCmd = "item"
 oRALItem.consoleOptions = {
-	type = "group",
-	desc = L["Options for item checks."],
-	name = L["Item"],
+	type = "group", name = L["Item"], desc = L["Options for item checks."],
 	args = {
-		[L["check"]] = {
-			type="text", name = L["Perform item check"],
-			desc = L["Check the raid for an item."],
+		check = {
+			type="text", name = L["Perform item check"], desc = L["Check the raid for an item."],
 			get = false,
-			set = function(v)
-					oRALItem:PerformItemCheck(v)
-				end,
-			validate = function(v)
-					return string.find(v, "(.+)")
-				end,
+			set = function(v) oRALItem:PerformItemCheck(v) end,
+			validate = function(v) return string.find(v, "(.+)") end,
 			usage = L["<item>"],
 			disabled = function() return not oRA:IsModuleActive(oRALItem) or not oRALItem:IsValidRequest() end,
 		},
-		[L["reagent"]] = {
-			type="execute", name = L["Perform reagent check"],
-			desc = L["Check the raid for reagents."],
-			func = function()
-					oRALItem:PerformReagentCheck()
-				end,
+		reagent = {
+			type="execute", name = L["Perform reagent check"], desc = L["Check the raid for reagents."],
+			func = function() oRALItem:PerformReagentCheck() end,
 			disabled = function() return not oRA:IsModuleActive(oRALItem) or not oRALItem:IsValidRequest() end,
-		},
-		
+		},	
 	}
 }
 
@@ -671,4 +668,3 @@ function oRALItem:Sort( tbl, sortBy )
 		end
 	)
 end
-

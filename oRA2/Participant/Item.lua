@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -23,8 +22,6 @@ local reagents = {
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["itemparticipant"] = true,
-	["item"] = true,
 	["Item"] = true,
 	["Options for item checks."] = true,
 	["SacredCandle"] = "Sacred Candle",
@@ -36,12 +33,25 @@ L:RegisterTranslations("enUS", function() return {
 	["FlashPowder"] = "Flash Powder",
 	["Participant/Item"] = true,
 	["Disable Checks"] = true,
-	["Disable"] = true,
 	["Disable Responding to Item Checks."] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Item"] = "Предметы",
+	["Options for item checks."] = "Опции для проверки предметов.",
+	["SacredCandle"] = "Священная свеча",
+	["ArcanePowder"] = "Порошок чар",
+	["WildThornroot"] = "Дикий шипокорень",
+	["Ankh"] = "Крест",
+	["SoulShard"] = "Осколок души",
+	["SymbolofDivinity"] = "Знак божественности",
+	["FlashPowder"] = "Воспламеняющийся порошок",
+	["Participant/Item"] = "Участник/Предметы",
+	["Disable Checks"] = "Отключить проверку",
+	["Disable Responding to Item Checks."] = "Отключить ответ на проверку предметов.",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["Item"] = "아이템",
 	["Options for item checks."] = "아이템 확인 설정",
 	["SacredCandle"] = "성스러운 양초",
@@ -53,13 +63,10 @@ L:RegisterTranslations("koKR", function() return {
 	["FlashPowder"] = "섬광 화약",
 	["Participant/Item"] = "부분/아이템",
 	["Disable Checks"] = "확인 응답 안함",
-	["Disable"] = "사용안함",
 	["Disable Responding to Item Checks."] = "아이템 확인에 대한 응답을 하지 않습니다.",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["itemparticipant"] = "itemparticipant",
-	["item"] = "物品",
 	["Options for item checks."] = "物品检查选项",
 	["SacredCandle"] = "神圣蜡烛",
 	["ArcanePowder"] = "魔粉",
@@ -70,14 +77,11 @@ L:RegisterTranslations("zhCN", function() return {
 	["FlashPowder"] = "闪光粉",
 	["Participant/Item"] = "Participant/Item",
 	["Disable Checks"] = "禁止检查",
-	["Disable"] = "禁止",
 	["Disable Responding to Item Checks."] = "禁止回复物品检查",
 } end )
 
 
 L:RegisterTranslations("zhTW", function() return {
-	["itemparticipant"] = "itemparticipant",
-	["item"] = "物品",
 	["Options for item checks."] = "物品檢查選項",
 	["SacredCandle"] = "神聖蠟燭",
 	["ArcanePowder"] = "魔粉",
@@ -88,7 +92,6 @@ L:RegisterTranslations("zhTW", function() return {
 	["FlashPowder"] = "閃光粉",
 	["Participant/Item"] = "隊員/物品",
 	["Disable Checks"] = "停用檢查",
-	["Disable"] = "停用",
 	["Disable Responding to Item Checks."] = "停止回應物品檢查。",
 } end )
 
@@ -103,8 +106,6 @@ L:RegisterTranslations("deDE", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["itemparticipant"] = true,
-	--["item"] = true,
 	["Item"] = "Objet",
 	["Options for item checks."] = "Options concernant les v\195\169rifications des objets.",
 	["SacredCandle"] = "Bougie sacr\195\169e",
@@ -116,7 +117,6 @@ L:RegisterTranslations("frFR", function() return {
 	["FlashPowder"] = "Poudre aveuglante",
 	["Participant/Item"] = "Participant/Objet",
 	["Disable Checks"] = "D\195\169sactiver les v\195\169rifications",
-	["Disable"] = "D\195\169sactiver",
 	["Disable Responding to Item Checks."] = "D\195\169sactive l'envoi d'une r\195\169ponse lors des v\195\169rifications des objets.",
 } end )
 
@@ -124,22 +124,18 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAPItem = oRA:NewModule(L["itemparticipant"])
+oRAPItem = oRA:NewModule("itemparticipant")
 oRAPItem.defaults = {
 	disable = false,
 }
 oRAPItem.participant = true
 oRAPItem.name = L["Participant/Item"]
-oRAPItem.consoleCmd = L["item"]
+oRAPItem.consoleCmd = "item"
 oRAPItem.consoleOptions = {
- 	type = "group",
- 	desc = L["Options for item checks."],
-	name = L["Item"],
+ 	type = "group", name = L["Item"], desc = L["Options for item checks."],
  	args = {
-		[L["Disable"]] = {
-			type = "toggle",
-			name = L["Disable Checks"],
-			desc = L["Disable Responding to Item Checks."],
+		disable = {
+			type = "toggle", name = L["Disable Checks"], desc = L["Disable Responding to Item Checks."],
 			get = function() return oRAPItem.db.profile.disable end,
 			set = function(v) oRAPItem.db.profile.disable = v end,
 		},

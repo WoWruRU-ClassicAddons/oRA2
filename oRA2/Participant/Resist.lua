@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -12,35 +11,31 @@ local L = AceLibrary("AceLocale-2.2"):new("oRAPResist")
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["resist"] = true,
-	["resistparticipant"] = true,
 	["Options for resistance checks."] = true,
 	["Participant/Resist"] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Options for resistance checks."] = "Опции для проверки сопротивлений.",
+	["Participant/Resist"] = "Участник/Сопротивление",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["Options for resistance checks."] = "저항 확인 설정",
 	["Participant/Resist"] = "부분/저항",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["resist"] = "抗性",
-	["resistparticipant"] = "resistparticipant",
 	["Options for resistance checks."] = "抗性助手选项",
 	["Participant/Resist"] = "Participant/Resist",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["resist"] = "抗性",
-	["resistparticipant"] = "resistparticipant",
 	["Options for resistance checks."] = "抗性檢查選項",
 	["Participant/Resist"] = "隊員/抗性",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["resist"] = true,
-	--["resistparticipant"] = true,
 	["Options for resistance checks."] = "Options concernant les v\195\169rifications des r\195\169sistances.",
 	["Participant/Resist"] = "Participant/R\195\169sistances",
 } end )
@@ -49,15 +44,14 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAPResist = oRA:NewModule(L["resistparticipant"])
+oRAPResist = oRA:NewModule("resistparticipant")
 oRAPResist.defaults = {
 }
 oRAPResist.participant = true
 oRAPResist.name = L["Participant/Resist"]
--- oRAPResist.consoleCmd = L["resist"]
+-- oRAPResist.consoleCmd = "resist"
 -- oRAPResist.consoleOptions = {
--- 	type = "group",
--- 	desc = L["Options for resistance checks."],
+-- 	type = "group", desc = L["Options for resistance checks."],
 -- 	args = {
 -- 	}
 -- }

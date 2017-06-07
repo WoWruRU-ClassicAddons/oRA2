@@ -15,8 +15,6 @@ local blockregexs = {
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["rw"] = true,
-	["raidwarning"] = true,
 	["Raidwarning"] = true,
 	["Options for raid warning."] = true,
 	["Participant/RaidWarn"] = true,
@@ -24,8 +22,15 @@ L:RegisterTranslations("enUS", function() return {
 	["Block messages from Bossmods."] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Raidwarning"] = "Рейдовые предупреждения",
+	["Options for raid warning."] = "Опции для рейдовых предупреждений.",
+	["Participant/RaidWarn"] = "Участник/Предупреждения",
+	["Bossblock"] = "Блокировка",
+	["Block messages from Bossmods."] = "Блокировка сообщений от Боссмодов.",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["Raidwarning"] = "공격대 경고",
 	["Options for raid warning."] = "공격대 경고 설정",
 	["Participant/RaidWarn"] = "부분/공격대경고",
@@ -34,8 +39,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["rw"] = "rw",
-	["raidwarning"] = "团队警告",
 	["Raidwarning"] = "团队警告",
 	["Options for raid warning."] = "团队警告选项",
 	["Participant/RaidWarn"] = "Participant/RaidWarn",
@@ -44,8 +47,6 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["rw"] = "rw",
-	["raidwarning"] = "團隊警告",
 	["Raidwarning"] = "團隊警告",
 	["Options for raid warning."] = "團隊警告選項",
 	["Participant/RaidWarn"] = "隊員/團隊警告",
@@ -54,8 +55,6 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["rw"] = true,
-	--["raidwarning"] = true,
 	["Raidwarning"] = "Avertissement du raid",
 	["Options for raid warning."] = "Options concernant l'avertissement du raid.",
 	["Participant/RaidWarn"] = "Participant/Avertissement du raid",
@@ -67,22 +66,19 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAPRaidWarn = oRA:NewModule(L["raidwarning"])
+oRAPRaidWarn = oRA:NewModule("raidwarning")
 oRAPRaidWarn.defaults = {
 	bossblock = true,
 }
 oRAPRaidWarn.participant = true
 oRAPRaidWarn.name = L["Participant/RaidWarn"]
 
-oRAPRaidWarn.consoleCmd = L["rw"]
+oRAPRaidWarn.consoleCmd = "rw"
 oRAPRaidWarn.consoleOptions = {
-	type = "group",
-	desc = L["Options for raid warning."],
-	name = L["Raidwarning"],
+	type = "group", name = L["Raidwarning"], desc = L["Options for raid warning."],
 	args = {
-		[L["Bossblock"]] = {
-			name = L["Bossblock"], type = "toggle",
-			desc = L["Block messages from Bossmods."],
+		bossblock = {
+			type = "toggle", name = L["Bossblock"], desc = L["Block messages from Bossmods."],
 			get = function() return oRAPRaidWarn.db.profile.bossblock end,
 			set = function(v)
 				oRAPRaidWarn.db.profile.bossblock = v

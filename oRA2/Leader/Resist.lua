@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -15,8 +14,6 @@ local function reclaimtable(t) if compost then compost:Reclaim(t) end end
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["resist"] = true,
-	["resistleader"] = true,
 	["Options for resistance checks."] = true,
 	["Leader/Resist"] = true,
 	["Name"] = true,
@@ -34,13 +31,33 @@ L:RegisterTranslations("enUS", function() return {
 	["S"] = true,
 	["Refresh"] = true,
 	["Close"] = true,
-	["check"] = true,
 	["Perform resistance check"] = true,
 	["Check the raid's resistances."] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Options for resistance checks."] = "Опции для проверки сопротивлений.",
+	["Leader/Resist"] = "Лидер/Сопротивление",
+	["Name"] = "Имя",
+	["Fire"] = "Огонь",
+	["Nature"] = "Природа",
+	["Frost"] = "Лёд",
+	["Shadow"] = "Тьма",
+	["Arcane"] = "Тайная магия",
+	["Resistance checks disabled."] = "Проверка сопротивлений отключена.",
+	["Resistances"] = "Сопротивления",
+	["Fr"] = "Ог",
+	["Ft"] = "Лед",
+	["N"] = "П",
+	["A"] = "ТМ",
+	["S"] = "Т",
+	["Refresh"] = "Обновить",
+	["Close"] = "Закрыть",
+	["Perform resistance check"] = "Выполнить проверку сопротивления",
+	["Check the raid's resistances."] = "Проверка сопротивлений рейда.",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["Options for resistance checks."] = "공격대원 저항 확인 설정",
 	["Leader/Resist"] = "공격대장/저항",
 	["Name"] = "이름",
@@ -63,8 +80,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["resist"] = "抗性",
-	["resistleader"] = "resistleader",
 	["Options for resistance checks."] = "抗性助手选项",
 	["Leader/Resist"] = "Leader/Resist",
 	["Name"] = "姓名",
@@ -82,14 +97,11 @@ L:RegisterTranslations("zhCN", function() return {
 	["S"] = "暗",
 	["Refresh"] = "刷新",
 	["Close"] = "关闭",
-	["check"] = "检查",
 	["Perform resistance check"] = "进行抗性检查",
 	["Check the raid's resistances."] = "检查团队抗性",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["resist"] = "抗性",
-	["resistleader"] = "resistleader",
 	["Options for resistance checks."] = "抗性助手選項",
 	["Leader/Resist"] = "領隊/抗性",
 	["Name"] = "姓名",
@@ -107,14 +119,11 @@ L:RegisterTranslations("zhTW", function() return {
 	["S"] = "陰",
 	["Refresh"] = "更新",
 	["Close"] = "關閉",
-	["check"] = "檢查",
 	["Perform resistance check"] = "進行抗性檢查",
 	["Check the raid's resistances."] = "檢查團隊抗性",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["resist"] = true,
-	--["resistleader"] = true,
 	["Options for resistance checks."] = "Options concernant les v\195\169rifications des r\195\169sistances.",
 	["Leader/Resist"] = "Chef/R\195\169sistances",
 	["Name"] = "Nom",
@@ -132,7 +141,6 @@ L:RegisterTranslations("frFR", function() return {
 	["S"] = "O",
 	["Refresh"] = "Rafra\195\174chir",
 	["Close"] = "Fermer",
-	--["check"] = true,
 	["Perform resistance check"] = "V\195\169rifier les r\195\169sistances",
 	["Check the raid's resistances."] = "V\195\169rifie les r\195\169sistances du raid.",
 } end )
@@ -141,26 +149,20 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRALResist = oRA:NewModule(L["resistleader"])
+oRALResist = oRA:NewModule("resistleader")
 oRALResist.defaults = {
 }
 oRALResist.participant = true
 oRALResist.name = L["Leader/Resist"]
-oRALResist.consoleCmd = L["resist"]
+oRALResist.consoleCmd = "resist"
 oRALResist.consoleOptions = {
-	type = "group",
-	desc = L["Options for resistance checks."],
-	name = L["Resistances"],
+	type = "group", name = L["Resistances"], desc = L["Options for resistance checks."],
 	args = {
-		[L["check"]] = {
-			type="execute", name = L["Perform resistance check"],
-			desc = L["Check the raid's resistances."],
-			func = function()
-					oRALResist:PerformResistanceCheck()
-				end,
+		check = {
+			type = "execute", name = L["Perform resistance check"], desc = L["Check the raid's resistances."],
+			func = function() oRALResist:PerformResistanceCheck() end,
 			disabled = function() return not oRA:IsModuleActive(oRALResist) or not oRALResist:IsValidRequest() end,
 		},
-
 	}
 }
 
@@ -690,4 +692,3 @@ function oRALResist:Sort(tbl, sortBy)
 		end
 	)
 end
-

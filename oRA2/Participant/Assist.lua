@@ -12,18 +12,23 @@ local L = AceLibrary("AceLocale-2.2"):new("oRAPAssist")
 
 L:RegisterTranslations("enUS", function() return {
 	["'|c00FFFFFF%s|r' wants you to assist him/her.\nPress Assist to assist."] = true,
-	["assistparticipant"] = true,
-	["assist"] = true,
 	["Assist"] = true,
 	["Options for assist."] = true,
-	["sound"] = true,
 	["Sound"] = true,
 	["Toggle an audio warning upon an assist request."] = true,
 	["Participant/Assist"] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["'|c00FFFFFF%s|r' wants you to assist him/her.\nPress Assist to assist."] = "'|c00FFFFFF%s|r' хочет, чтобы вы помогли ему/ей.\nНажмите Помощь, чтобы помочь.",
+	["Assist"] = "Помощь",
+	["Options for assist."] = "Опции для помощи.",
+	["Sound"] = "Звук",
+	["Toggle an audio warning upon an assist request."] = "Вкл./Выкл. звукового предупреждения по запросу помощи.",
+	["Participant/Assist"] = "Участник/Помощь",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["'|c00FFFFFF%s|r' wants you to assist him/her.\nPress Assist to assist."] = "'|c00FFFFFF%s|r'님이 당신이 지원해주기를 원합니다.\n지원하기 위해서는 지원 버튼을 누르세요.",
 	["Assist"] = "지원",
 	["Options for assist."] = "지원 설정",
@@ -34,11 +39,8 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	["'|c00FFFFFF%s|r' wants you to assist him/her.\nPress Assist to assist."] = "'|c00FFFFFF%s|r' 希望你协助他的目标r。\n点击协助来允许。",
-	["assistparticipant"] = "assistparticipant",
-	["assist"] = "协助",
 	["Assist"] = "协助",
 	["Options for assist."] = "协助选项",
-	["sound"] = "声音",
 	["Sound"] = "声音",
 	["Toggle an audio warning upon an assist request."] = "收到协助请求发声",
 	["Participant/Assist"] = "Participant/Assist",
@@ -46,11 +48,8 @@ L:RegisterTranslations("zhCN", function() return {
 
 L:RegisterTranslations("zhTW", function() return {
 	["'|c00FFFFFF%s|r' wants you to assist him/her.\nPress Assist to assist."] = "'|c00FFFFFF%s|r' 希望你協助他的目標。\n點擊協助來協助。",
-	["assistparticipant"] = "assistparticipant",
-	["assist"] = "協助",
 	["Assist"] = "協助",
 	["Options for assist."] = "協助選項",
-	["sound"] = "聲音",
 	["Sound"] = "聲音",
 	["Toggle an audio warning upon an assist request."] = "收到協助請求時聲音提示",
 	["Participant/Assist"] = "隊員/協助",
@@ -58,11 +57,8 @@ L:RegisterTranslations("zhTW", function() return {
 
 L:RegisterTranslations("frFR", function() return {
 	["'|c00FFFFFF%s|r' wants you to assist him/her.\nPress Assist to assist."] = "'|c00FFFFFF%s|r' veux que vous l'aidiez.\nAppuyez sur Aide pour l'aider.",
-	--["assistparticipant"] = true,
-	--["assist"] = true,
 	["Assist"] = "Aide",
 	["Options for assist."] = "Options concernant l'aide.",
-	--["sound"] = true,
 	["Sound"] = "Son",
 	["Toggle an audio warning upon an assist request."] = "Joue un avertissement sonore quand quelqu'un demande de l'aide.",
 	["Participant/Assist"] = "Participant/Aide",
@@ -72,21 +68,18 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAPAssist = oRA:NewModule(L["assistparticipant"])
+oRAPAssist = oRA:NewModule("assistparticipant")
 oRAPAssist.defaults = {
 	sound = true,
 }
 oRAPAssist.participant = true
-oRAPAssist.consoleCmd = L["assist"]
+oRAPAssist.consoleCmd = "assist"
 oRAPAssist.name = L["Participant/Assist"]
 oRAPAssist.consoleOptions = {
-	type = "group",
-	desc = L["Options for assist."],
-	name = L["Assist"],
+	type = "group", name = L["Assist"], desc = L["Options for assist."],
 	args = {
-		[L["sound"]] = {
-			name = L["Sound"], type = "toggle",
-			desc = L["Toggle an audio warning upon an assist request."],
+		sound = {
+			type = "toggle", name = L["Sound"], desc = L["Toggle an audio warning upon an assist request."],
 			get = function() return oRAPAssist.db.profile.sound end,
 			set = function(v)
 				oRAPAssist.db.profile.sound = v

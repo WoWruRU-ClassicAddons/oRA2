@@ -1,4 +1,3 @@
-
 assert(oRA, "oRA not found!")
 
 ------------------------------
@@ -19,9 +18,19 @@ L:RegisterTranslations("enUS", function() return {
 	["Active boss modules"] = true,
 	["Hidden"] = true,
 	["Shown"] = true,
-	["minimap"] = true,
 	["Minimap"] = true,
 	["Toggle the minimap button."] = true,
+} end)
+
+L:RegisterTranslations("ruRU", function() return {
+	tablethint = "|cffeda55fCtrl+Alt+Левый клик|r - чтобы отключить oRA полностью. |cffeda55fAlt+перетаскивание|r - чтобы переместить MT, цели игроков и мониторы.",
+	tablethint_disabled = "oRA в данный момент отключен. |cffeda55fШёлкните|r, чтобы включить.",
+	["oRA Options"] = "oRA Опции",
+	["Active boss modules"] = "Активировать босс модули",
+	["Hidden"] = "Скрыть",
+	["Shown"] = "Отобразить",
+	["Minimap"] = "Миникарта",
+	["Toggle the minimap button."] = "Вкл./Выкл. кнопку миникарты.",
 } end)
 
 L:RegisterTranslations("koKR", function() return {
@@ -35,14 +44,12 @@ L:RegisterTranslations("koKR", function() return {
 	["Toggle the minimap button."] = "미니맵 버튼 토글",
 } end)
 
-
 L:RegisterTranslations("zhCN", function() return {
 	tablethint = "|cffeda55fCtrl-Alt-点击|r 来关闭oRA．|cffeda55f按住Alt-拖动|r来移动MT，PT和监视器",
 	tablethint_disabled = "oRA目前关闭。|cffeda55f点击|r来激活。",
 	["Active boss modules"] = "激活boss模块",
 	["Hidden"] = "隐藏",
 	["Shown"] = "显示",
-	["minimap"] = "小地图",
 	["Minimap"] = "小地图",
 	["Toggle the minimap button."] = "显示小地图图标",
 } end)
@@ -54,7 +61,6 @@ L:RegisterTranslations("zhTW", function() return {
 	["Active boss modules"] = "啟動BOSS模組",
 	["Hidden"] = "隱藏",
 	["Shown"] = "顯示",
-	["minimap"] = "小地圖",
 	["Minimap"] = "小地圖",
 	["Toggle the minimap button."] = "顯示小地圖按鈕。",
 } end)
@@ -66,7 +72,6 @@ L:RegisterTranslations("frFR", function() return {
 	["Active boss modules"] = "Modules boss actifs",
 	["Hidden"] = "Cach\195\169",
 	["Shown"] = "Affich\195\169",
-	--["minimap"] = true,
 	["Minimap"] = "Minicarte",
 	["Toggle the minimap button."] = "Affiche ou non le bouton de la minicarte.",
 } end)
@@ -77,11 +82,9 @@ L:RegisterTranslations("frFR", function() return {
 
 local deuce = oRA:NewModule("Options Menu")
 deuce.hasFuBar = IsAddOnLoaded("FuBar") and FuBar
-deuce.consoleCmd = not deuce.hasFuBar and L["minimap"]
+deuce.consoleCmd = not deuce.hasFuBar and "minimap"
 deuce.consoleOptions = not deuce.hasFuBar and {
-	type = "toggle",
-	name = L["Minimap"],
-	desc = L["Toggle the minimap button."],
+	type = "toggle", name = L["Minimap"], desc = L["Toggle the minimap button."],
 	get = function() return oRAOptions.minimapFrame and oRAOptions.minimapFrame:IsVisible() or false end,
 	set = function(v) if v then oRAOptions:Show() else oRAOptions:Hide() end end,
 	map = {[false] = L["Hidden"], [true] = L["Shown"]},
@@ -162,4 +165,3 @@ function oRAOptions:OnClick()
 
 	self:UpdateTooltip()
 end
-

@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -16,8 +15,6 @@ local function reclaimtable(t) if compost then compost:Reclaim(t) end end
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["zoneoptional"] = true,
-	["zone"] = true,
 	["Zone"] = true,
 	["Options for zone checks."] = true,
 	["Refresh"] = true,
@@ -25,13 +22,23 @@ L:RegisterTranslations("enUS", function() return {
 	["Unknown"] = true,
 	["Name"] = true,
 	["Optional/Zone"] = true,
-	["check"] = true,
 	["Perform zone check"] = true,
 	["Check the raid's location."] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Zone"] = "Зона",
+	["Options for zone checks."] = "Опции для проверки зоны.",
+	["Refresh"] = "Обновить",
+	["Close"] = "Закрыть",
+	["Unknown"] = "Неизвестно",
+	["Name"] = "Имя",
+	["Optional/Zone"] = "Дополнительно/Зона",
+	["Perform zone check"] = "Выполнить проверку зоны",
+	["Check the raid's location."] = "Проверка местонахождения рейда.",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["Zone"] = "지역",
 	["Options for zone checks."] = "지역 확인 설정",
 	["Refresh"] = "갱신",
@@ -44,8 +51,6 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["zoneoptional"] = "zoneoptional",
-	["zone"] = "区域",
 	["Zone"] = "区域",
 	["Options for zone checks."] = "区域检查选项",
 	["Refresh"] = "刷新",
@@ -53,14 +58,11 @@ L:RegisterTranslations("zhCN", function() return {
 	["Unknown"] = "未知",
 	["Name"] = "姓名",
 	["Optional/Zone"] = "Optional/Zone",
-	["check"] = "检查",
 	["Perform zone check"] = "区域检查",
 	["Check the raid's location."] = "检查团队所在区域",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["zoneoptional"] = "zoneoptional",
-	["zone"] = "區域",
 	["Zone"] = "區域",
 	["Options for zone checks."] = "區域檢查選項",
 	["Refresh"] = "更新",
@@ -68,22 +70,18 @@ L:RegisterTranslations("zhTW", function() return {
 	["Unknown"] = "未知",
 	["Name"] = "姓名",
 	["Optional/Zone"] = "可選/區域",
-	["check"] = "檢查",
 	["Perform zone check"] = "區域檢查",
 	["Check the raid's location."] = "檢查團隊所在區域",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["zoneoptional"] = true,
-	--["zone"] = true,
-	--["Zone"] = true,
+	["Zone"] = "Zone",
 	["Options for zone checks."] = "Options concernant les v\195\169rifications de zone.",
 	["Refresh"] = "Rafra\195\174chir",
 	["Close"] = "Fermer",
 	["Unknown"] = "Inconnu",
 	["Name"] = "Nom",
 	["Optional/Zone"] = "Optionnel/Zone",
-	--["check"] = true,
 	["Perform zone check"] = "V\195\169rifier les zones",
 	["Check the raid's location."] = "V\195\169rifie la position des membres du raid.",
 } end )
@@ -92,23 +90,18 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAOZone = oRA:NewModule(L["zoneoptional"])
+oRAOZone = oRA:NewModule("zoneoptional")
 oRAOZone.defaults = {
 }
 oRAOZone.participant = true
 oRAOZone.name = L["Optional/Zone"]
-oRAOZone.consoleCmd = L["zone"]
+oRAOZone.consoleCmd = "zone"
 oRAOZone.consoleOptions = {
-	type = "group",
-	desc = L["Options for zone checks."],
-	name = L["Zone"],
+	type = "group", name = L["Zone"], desc = L["Options for zone checks."],
 	args = {
-		[L["check"]] = {
-			type="execute", name = L["Perform zone check"],
-			desc = L["Check the raid's location."],
-			func = function()
-				oRAOZone:PerformZoneCheck()
-			end,
+		check = {
+			type="execute", name = L["Perform zone check"], desc = L["Check the raid's location."],
+			func = function() oRAOZone:PerformZoneCheck() end,
 			disabled = function() return not oRA:IsModuleActive(oRAOZone) end,
 		},
 	}
@@ -428,4 +421,3 @@ function oRAOZone:Sort( tbl, sortBy )
 		end
 	)
 end
-

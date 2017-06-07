@@ -12,17 +12,21 @@ local L = AceLibrary("AceLocale-2.2"):new("oRAOResurrection")
 
 L:RegisterTranslations("enUS", function() return {
 	["Resurrection Monitor"] = true,
-	["resurrection"] = true,
-	["resurrectionoptional"] = true,
 	["Optional/Resurrection"] = true,
 	["Options for resurrection."] = true,
 	["Toggle"] = true,
-	["toggle"] = true,
 	["Toggle the Resurrection Monitor."] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Resurrection Monitor"] = "Монитор воскрешения",
+	["Optional/Resurrection"] = "Дополнительно/Воскрешение",
+	["Options for resurrection."] = "Опции для воскрешения.",
+	["Toggle"] = "Вкл./Выкл.",
+	["Toggle the Resurrection Monitor."] = "Вкл./Выкл. монитор воскрешения.",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["Resurrection Monitor"] = "부활상태 모니터",
 	["Optional/Resurrection"] = "부가/부활",
 	["Options for resurrection."] = "부활 모니터링 설정",
@@ -32,34 +36,25 @@ L:RegisterTranslations("koKR", function() return {
 
 L:RegisterTranslations("zhCN", function() return {
 	["Resurrection Monitor"] = "复活监视器",
-	["resurrection"] = "复活",
-	["resurrectionoptional"] = "resurrectionoptional",
 	["Optional/Resurrection"] = "Optional/Resurrection",
 	["Options for resurrection."] = "复活选项",
 	["Toggle"] = "激活",
-	["toggle"] = "激活",
 	["Toggle the Resurrection Monitor."] = "激活复活监视器",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
 	["Resurrection Monitor"] = "復活監視器",
-	["resurrection"] = "復活",
-	["resurrectionoptional"] = "resurrectionoptional",
 	["Optional/Resurrection"] = "可選/復活",
 	["Options for resurrection."] = "復活選項",
 	["Toggle"] = "顯示",
-	["toggle"] = "顯示",
 	["Toggle the Resurrection Monitor."] = "顯示復活監視器",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
 	["Resurrection Monitor"] = "Surveillance des r\195\169surrections",
-	--["resurrection"] = true,
-	--["resurrectionoptional"] = true,
 	["Optional/Resurrection"] = "Optionnel/R\195\169surrection",
 	["Options for resurrection."] = "Options concernant les r\195\169surrections.",
 	["Toggle"] = "Afficher",
-	--["toggle"] = true,
 	["Toggle the Resurrection Monitor."] = "Affiche ou non la surveillance des r\195\169surrections.",
 } end )
 
@@ -67,25 +62,20 @@ L:RegisterTranslations("frFR", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAOResurrection = oRA:NewModule(L["resurrectionoptional"])
+oRAOResurrection = oRA:NewModule("resurrectionoptional")
 oRAOResurrection.defaults = {
 	hidden = true,
 }
 oRAOResurrection.optional = true
 oRAOResurrection.name = L["Optional/Resurrection"]
-oRAOResurrection.consoleCmd = L["resurrection"]
+oRAOResurrection.consoleCmd = "resurrection"
 oRAOResurrection.consoleOptions = {
-	type = "group",
-	desc = L["Options for resurrection."],
-	name = L["Resurrection Monitor"],
+	type = "group", name = L["Resurrection Monitor"], desc = L["Options for resurrection."],
 	args = {
-		[L["toggle"]] = {
-			type = "toggle", name = L["Toggle"],
-			desc = L["Toggle the Resurrection Monitor."],
+		toggle = {
+			type = "toggle", name = L["Toggle"], desc = L["Toggle the Resurrection Monitor."],
 			get = function() return not oRAOResurrection.db.profile.hidden end,
-			set = function(v)
-				oRAOResurrection:ToggleView()
-			end,
+			set = function(v) oRAOResurrection:ToggleView() end,
 		}
 	}
 }
@@ -298,4 +288,3 @@ function oRAOResurrection:ToggleView()
 		self.resframe:Show()
 	end
 end
-

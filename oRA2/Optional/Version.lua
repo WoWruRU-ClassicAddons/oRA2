@@ -1,4 +1,3 @@
-
 assert( oRA, "oRA not found!")
 
 ------------------------------
@@ -17,8 +16,6 @@ local function reclaimtable(t) if compost then compost:Reclaim(t) end end
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["versionoptional"] = true,
-	["version"] = true,
 	["Version"] = true,
 	["Options for version checks."] = true,
 	["Refresh"] = true,
@@ -26,16 +23,25 @@ L:RegisterTranslations("enUS", function() return {
 	["Unknown"] = true,
 	["Name"] = true,
 	["Optional/Version"] = true,
-	["check"] = true,
 	["Perform version check"] = true,
 	["Check the raid's versions."] = true,
-	["CTRA"] = true,
-	["oRA"] = true,
 	["n/a"] = true,
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["Version"] = "Версия",
+	["Options for version checks."] = "Опции для проверки версии.",
+	["Refresh"] = "Обновить",
+	["Close"] = "Закрыть",
+	["Unknown"] = "Неизвестно",
+	["Name"] = "Имя",
+	["Optional/Version"] = "Дополнительно/Версия",
+	["Perform version check"] = "Выполнить проверку версии",
+	["Check the raid's versions."] = "Проверка версий рейда.",
+	["n/a"] = "недоступно",
+} end )
 
+L:RegisterTranslations("koKR", function() return {
 	["Version"] = "버전",
 	["Options for version checks."] = "버전 확인 설정.",
 	["Refresh"] = "갱신",
@@ -45,14 +51,10 @@ L:RegisterTranslations("koKR", function() return {
 	["Optional/Version"] = "부가/버전",
 	["Perform version check"] = "버전 확인 실시",
 	["Check the raid's versions."] = "공격대원의 애드온 버전을 확인합니다.",
-	["CTRA"] = "공격대 도우미",
-	["oRA"] = "oRA",
 	["n/a"] = "없음",
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["versionoptional"] = "versionoptional",
-	["version"] = "版本",
 	["Version"] = "版本",
 	["Options for version checks."] = "版本检查选项",
 	["Refresh"] = "刷新",
@@ -60,17 +62,12 @@ L:RegisterTranslations("zhCN", function() return {
 	["Unknown"] = "未知",
 	["Name"] = "姓名",
 	["Optional/Version"] = "Optional/Version",
-	["check"] = "检查",
 	["Perform version check"] = "进行版本检查",
 	["Check the raid's versions."] = "检查团队版本",
-	["CTRA"] = "CTRA",
-	["oRA"] = "oRA",
 	["n/a"] = "n/a",
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["versionoptional"] = "versionoptional",
-	["version"] = "版本",
 	["Version"] = "版本",
 	["Options for version checks."] = "版本檢查選項",
 	["Refresh"] = "更新",
@@ -78,53 +75,40 @@ L:RegisterTranslations("zhTW", function() return {
 	["Unknown"] = "未知",
 	["Name"] = "姓名",
 	["Optional/Version"] = "可選/版本",
-	["check"] = "檢查",
 	["Perform version check"] = "進行版本檢查",
 	["Check the raid's versions."] = "檢查團隊版本",
-	["CTRA"] = "CTRA",
-	["oRA"] = "oRA",
 	["n/a"] = "無",
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["versionoptional"] = true,
-	--["version"] = true,
-	--["Version"] = true,
+	["Version"] = "Version",
 	["Options for version checks."] = "Options concernant les v\195\169rifications des versions.",
 	["Refresh"] = "Rafra\195\174chir",
 	["Close"] = "Fermer",
 	["Unknown"] = "Inconnu",
 	["Name"] = "Nom",
 	["Optional/Version"] = "Optionnel/Version",
-	--["check"] = true,
 	["Perform version check"] = "V\195\169rifier les versions",
 	["Check the raid's versions."] = "V\195\169rifie les versions du raid.",
-	--["CTRA"] = true,
-	--["oRA"] = true,
-	--["n/a"] = true,
+	["n/a"] = "n/a",
 } end )
 
 ----------------------------------
 --      Module Declaration      --
 ----------------------------------
 
-oRAOVersion = oRA:NewModule(L["versionoptional"])
+oRAOVersion = oRA:NewModule("versionoptional")
 oRAOVersion.defaults = {
 }
 oRAOVersion.participant = true
 oRAOVersion.name = L["Optional/Version"]
-oRAOVersion.consoleCmd = L["version"]
+oRAOVersion.consoleCmd = "version"
 oRAOVersion.consoleOptions = {
-	type = "group",
-	desc = L["Options for version checks."],
-	name = L["Version"],
+	type = "group", name = L["Version"], desc = L["Options for version checks."],
 	args = {
-		[L["check"]] = {
-			type="execute", name = L["Perform version check"],
-			desc = L["Check the raid's versions."],
-			func = function()
-					oRAOVersion:PerformVersionCheck()
-			end,
+		check = {
+			type = "execute", name = L["Perform version check"], desc = L["Check the raid's versions."],
+			func = function() oRAOVersion:PerformVersionCheck() end,
 			disabled = function() return not oRA:IsModuleActive(oRAOVersion) end,
 		},
 	}
@@ -139,8 +123,8 @@ function oRAOVersion:OnEnable()
 	self.sorting = getnewtable()
 
 	self.sorting[1] = L["Name"]
-	self.sorting[2] = L["CTRA"]
-	self.sorting[3] = L["oRA"]
+	self.sorting[2] = "CTRA"
+	self.sorting[3] = "oRA"
 
 	self:SetupFrames()
 	self:RegisterShorthand("raver", function() self:PerformVersionCheck() end )
@@ -281,7 +265,7 @@ function oRAOVersion:SetupFrames()
 	self.frames.headerctraversiontext = self.frames.main:CreateFontString(nil,"OVERLAY")
 	self.frames.headerctraversiontext:SetFont(f, 14)
 	self.frames.headerctraversiontext:SetWidth(75)
-	self.frames.headerctraversiontext:SetText(L["CTRA"])
+	self.frames.headerctraversiontext:SetText("CTRA")
 	self.frames.headerctraversiontext:SetTextColor(1, .8, 0)
 	self.frames.headerctraversiontext:ClearAllPoints()
 	self.frames.headerctraversiontext:SetJustifyH("LEFT")
@@ -312,7 +296,7 @@ function oRAOVersion:SetupFrames()
 	self.frames.headeroraversiontext.owner = self
 	self.frames.headeroraversiontext:SetFont(f, 14)
 	self.frames.headeroraversiontext:SetWidth(75)
-	self.frames.headeroraversiontext:SetText(L["oRA"])
+	self.frames.headeroraversiontext:SetText("oRA")
 	self.frames.headeroraversiontext:SetTextColor(1, .8, 0)
 	self.frames.headeroraversiontext:ClearAllPoints()
 	self.frames.headeroraversiontext:SetJustifyH("LEFT")
@@ -490,4 +474,3 @@ function oRAOVersion:Sort( tbl, sortBy )
 		end
 	)
 end
-

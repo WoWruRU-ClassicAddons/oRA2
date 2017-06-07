@@ -2,18 +2,21 @@
 --      Are you local?      --
 ------------------------------
 local L = AceLibrary("AceLocale-2.2"):new("oRA")
+local waterfall = AceLibrary("Waterfall-1.0")
 
 local CTRAversion = "1.541"
 
 local surface = AceLibrary("Surface-1.0")
 
-surface:Register("Otravi", "Interface\\AddOns\\oRA2\\Textures\\otravi")
-surface:Register("Smooth", "Interface\\AddOns\\oRA2\\Textures\\smooth")
-surface:Register("Smudge", "Interface\\AddOns\\oRA2\\Textures\\smudge")
-surface:Register("Charcoal", "Interface\\AddOns\\oRA2\\textures\\charcoal")
-surface:Register("BantoBar", "Interface\\AddOns\\oRA2\\textures\\bantobar")
-surface:Register("Perl", "Interface\\AddOns\\oRA2\\textures\\perl")
-surface:Register("Striped", "Interface\\AddOns\\oRA2\\textures\\striped")
+surface:Register("Otravi",   "Interface\\AddOns\\oRA2\\Textures\\otravi"  )
+surface:Register("Smooth",   "Interface\\AddOns\\oRA2\\Textures\\smooth"  )
+surface:Register("Smudge",   "Interface\\AddOns\\oRA2\\Textures\\smudge"  )
+surface:Register("Charcoal", "Interface\\AddOns\\oRA2\\Textures\\charcoal")
+surface:Register("BantoBar", "Interface\\AddOns\\oRA2\\Textures\\bantobar")
+surface:Register("Perl",     "Interface\\AddOns\\oRA2\\Textures\\perl"    )
+surface:Register("Striped",  "Interface\\AddOns\\oRA2\\Textures\\striped" )
+surface:Register("glaze",    "Interface\\AddOns\\oRA2\\Textures\\glaze"   )
+surface:Register("litestep", "Interface\\AddOns\\oRA2\\Textures\\litestep")
 
 ----------------------------
 --      Localization      --
@@ -24,15 +27,27 @@ L:RegisterTranslations("enUS", function() return {
 	["You are now DND"] = true,
 	["You have to be Raid Leader or Assistant to do that."] = true,
 	["Requested a status update."] = true,
-	["useshorthands"] = true,
 	["Use shorthands"] = true,
 	["Toggle using of CTRA shorthands"] = true,
 	[" ...hic!"] = true,
-	["status"] = true,
 	["Request status"] = true,
 	["Request a status update"] = true,
 	["Textures"] = true,
 	["Set all statusbar textures."] = true,	
+} end)
+
+L:RegisterTranslations("ruRU", function() return {
+	["You are now AFK"] = "Теперь вы АФК",
+	["You are now DND"] = "Теперь вы DND",
+	["You have to be Raid Leader or Assistant to do that."] = "Вы должны быть Рейд лидером или помощником, чтобы сделать это.",
+	["Requested a status update."] = "Требуется обновление данных.",
+	["Use shorthands"] = "Использовать сокращения",
+	["Toggle using of CTRA shorthands"] = "Вкл./Выкл. использования CTRA сокращений.",
+	[" ...hic!"] = " ...ик!",
+	["Request status"] = "Запрос статуса",
+	["Request a status update"] = "Запрос на обновление данных.",
+	["Textures"] = "Текстуры",
+	["Set all statusbar textures."] = "Установить все statusbar текстуры.",	
 } end)
 
 L:RegisterTranslations("deDE", function() return {
@@ -54,16 +69,13 @@ L:RegisterTranslations("koKR", function() return {
 	["You are now DND"] = "|1으로;로; 설정되었습니다",
 	["You have to be Raid Leader or Assistant to do that."] = "공격대장이거나 승급된 사람만 사용 가능합니다.",
 	["Requested a status update."] = "상태 갱신을 요청합니다.",
-	["useshorthands"] = "단축명령어사용",
 	["Use shorthands"] = "단축 명령어 사용",
 	["Toggle using of CTRA shorthands"] = "공격대 도우미 단축 명령어 사용 토글",
 	[" ...hic!"] = " ...딸꾹!",
-	["status"] = "상태",
 	["Request status"] = "상태 갱신 요청",
 	["Request a status update"] = "상태 갱신을 요청",
 	["Textures"] = "텍스쳐",
 	["Set all statusbar textures."] = "모든 바의 텍스쳐로 설정합니다.",	
-	
 } end)
 
 L:RegisterTranslations("zhCN", function() return {
@@ -71,17 +83,14 @@ L:RegisterTranslations("zhCN", function() return {
 	["You are now DND"] = "你正在DND状态",
 	["You have to be Raid Leader or Assistant to do that."] = "只有团队领袖/队长才可以",
 	["Requested a status update."] = "请求更新状态",
-	["useshorthands"] = "使用缩略",
 	["Use shorthands"] = "使用缩略",
 	["Toggle using of CTRA shorthands"] = "使用CTRA缩略",
 	["Toggle using of CTRA shorthands"] = "使用CTRA缩略",
 	[" ...hic!"] = "...嗝!",
-	["status"] = "状态",
 	["Request status"] = "获取状态",
 	["Request a status update"] = "获取状态更新",
 	["Textures"] = "材质",
 	["Set all statusbar textures."] = "设置所有状态条的材质"
-	
 } end)
 
 L:RegisterTranslations("zhTW", function() return {
@@ -89,17 +98,14 @@ L:RegisterTranslations("zhTW", function() return {
 	["You are now DND"] = "你現在處於勿打擾狀態",
 	["You have to be Raid Leader or Assistant to do that."] = "只有領隊/隊長才可以",
 	["Requested a status update."] = "請求更新狀態",
-	["useshorthands"] = "使用縮略",
 	["Use shorthands"] = "使用縮略",
 	["Toggle using of CTRA shorthands"] = "使用CTRA縮略",
 	["Toggle using of CTRA shorthands"] = "使用CTRA縮略",
 	[" ...hic!"] = "...啊!",
-	["status"] = "狀態",
 	["Request status"] = "請求狀態",
 	["Request a status update"] = "請求狀態更新",
 	["Textures"] = "材質",
 	["Set all statusbar textures."] = "設置所有狀態條的材質"
-	
 } end)
 
 L:RegisterTranslations("frFR", function() return {
@@ -110,10 +116,9 @@ L:RegisterTranslations("frFR", function() return {
 	["Use shorthands"] = "Utiliser les commandes courtes",
 	["Toggle using of CTRA shorthands"] = "Utilise ou non les commandes courtes de CTRA.",
 	[" ...hic!"] = " ... hic !",
-	--["status"] = true,
 	["Request status"] = "Demander le statut",
 	["Request a status update"] = "Demande une mise \195\160 jour du statut.",
-	--["Textures"] = true,
+	["Textures"] = "Textures",
 	["Set all statusbar textures."] = "D\195\169termine la texture de toutes les barres de statut.",
 } end)
 
@@ -127,15 +132,14 @@ oRA.defaults = {
 	bartexture = "BantoBar",
 	useshorthands = true,
 }
-oRA.version = tonumber(string.sub("$Revision: 17956 $", 12, -3))
+oRA.version = tonumber(string.sub("$Revision: 18312 $", 12, -3))
 oRA.CTRAversion = CTRAversion
 oRA.consoleOptions = {
 		type	= "group",
 		handler = oRA,
 		args	= {
-			[L["useshorthands"]] = {
-				name = L["Use shorthands"], type = "toggle",
-				desc = L["Toggle using of CTRA shorthands"],
+			useshorthands = {
+				type = "toggle", name = L["Use shorthands"], desc = L["Toggle using of CTRA shorthands"],
 				get = function() return oRA.db.profile.useshorthands end,
 				set = function(v)
 					oRA.db.profile.useshorthands = v
@@ -143,19 +147,16 @@ oRA.consoleOptions = {
 				end,
 				order = 1000,
 			},
-			[L["status"]] = {
-				name = L["Request status"], type = "execute",
-				desc = L["Request a status update"],
+			status = {
+				type = "execute", name = L["Request status"], desc = L["Request a status update"],
 				func = function()
 					oRA:RequestStatus()
 				end,
 				order = 1000,
 				disabled = function() return not oRA:IsActive() end,
 			},
-			[L["Textures"]] = {
-				type = "text",
-				name = L["Textures"],
-				desc = L["Set all statusbar textures."],
+			textures = {
+				type = "text", name = L["Textures"], desc = L["Set all statusbar textures."],
 				get = function() return oRA.db.profile.bartexture end,
 				set = function(v) oRA:SetBarTexture(v)	end,
 				validate = surface:List(),
@@ -165,7 +166,9 @@ oRA.consoleOptions = {
 
 oRA:RegisterDB("oRADB", "oRADBPerChar")
 oRA:RegisterDefaults("profile", oRA.defaults)
-oRA:RegisterChatCommand({"/ora", "/oRA"}, oRA.consoleOptions )
+oRA:RegisterChatCommand({"/oracl", "/oRAcl"}, oRA.consoleOptions )
+oRA:RegisterChatCommand({"/ora", "/oRA"}, function() waterfall:Open('oRA') end)
+waterfall:Register('oRA', 'aceOptions', oRA.consoleOptions, 'title','oRA 2.0. Revision: 18312','colorR', 0.7, 'colorG', 0.3, 'colorB', 0.5) 
 
 
 ------------------------------
@@ -184,9 +187,9 @@ function oRA:OnInitialize()
 
 	self.loading = true
 
-	self.consoleOptions.args[L["Textures"]].validate = surface:List()
+	self.consoleOptions.args.textures.validate = surface:List()
         self:RegisterEvent("Surface_Registered", function()
-		self.consoleOptions.args[L["Textures"]].validate = surface:List()
+		self.consoleOptions.args.textures.validate = surface:List()
         end)
 
 	-- try and enable ourselves
@@ -224,7 +227,7 @@ function oRA:AceEvent_FullyInitialized()
 
 		if not self:IsEventRegistered("Surface_Registered") then 
 		        self:RegisterEvent("Surface_Registered", function()
-				self.consoleOptions.args[L["Textures"]].validate = surface:List()
+				self.consoleOptions.args.textures.validate = surface:List()
 		        end)
 		end
 		self:TriggerEvent("oRA_CoreEnabled")
@@ -642,5 +645,3 @@ function oRA:UnregisterShorthand( shorthand )
 		end
 	end
 end
-
-

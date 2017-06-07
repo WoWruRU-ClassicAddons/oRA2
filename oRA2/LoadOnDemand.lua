@@ -131,4 +131,3 @@ function oRALoD:InitializeLoD()
 		end
 	end
 end
-

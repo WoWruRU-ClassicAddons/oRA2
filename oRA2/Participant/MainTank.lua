@@ -11,16 +11,12 @@ local L = AceLibrary("AceLocale-2.2"):new("oRAPMainTank")
 ----------------------------
 
 L:RegisterTranslations("enUS", function() return {
-	["maintank"] = true,
 	["MainTank"] = true,
-	["mt"] = true,
 	["Options for the maintanks."] = true,
-	["refresh"] = true,
 	["The local maintank list has been refreshed."] = true,
 	["Refresh Maintanks"] = true,
 	["Refresh the local maintank list."] = true,
 	["Participant/MainTank"] = true,
-	["notifydeath"] = true,
 	["Notify deaths"] = true,
 	["Notifies you when a main tank dies."] = true,
 	["Tank %s has died!"] = true,
@@ -28,8 +24,21 @@ L:RegisterTranslations("enUS", function() return {
 	maintankdies = "^([^%s]+) dies%.$",
 } end )
 
-L:RegisterTranslations("koKR", function() return {
+L:RegisterTranslations("ruRU", function() return {
+	["MainTank"] = "Основной танк (MT)",
+	["Options for the maintanks."] = "Опции для MT.",
+	["The local maintank list has been refreshed."] = "Локальный список MT был обновлен.",
+	["Refresh Maintanks"] = "Обновить MT",
+	["Refresh the local maintank list."] = "Обновление локального списка MT.",
+	["Participant/MainTank"] = "Участник/MT",
+	["Notify deaths"] = "Уведомления смерти",
+	["Notifies you when a main tank dies."] = "Уведомляет вас, когда MT умирает.",
+	["Tank %s has died!"] = "Танк %s умер!",
 
+	maintankdies = "^([^%s]+) погибает%.$",
+} end )
+
+L:RegisterTranslations("koKR", function() return {
 	["MainTank"] = "메인탱커",
 	["Options for the maintanks."] = "메인탱커 설정",
 	["The local maintank list has been refreshed."] = "로컬 메인탱커 목록이 갱신되었습니다.",
@@ -44,16 +53,12 @@ L:RegisterTranslations("koKR", function() return {
 } end )
 
 L:RegisterTranslations("zhCN", function() return {
-	["maintank"] = "MT目标",
 	["MainTank"] = "MT目标",
-	["mt"] = "MT目标",
 	["Options for the maintanks."] = "MT选项",
-	["refresh"] = "刷新",
 	["The local maintank list has been refreshed."] = "本地MT已刷新",
 	["Refresh Maintanks"] = "刷新MT",
 	["Refresh the local maintank list."] = "刷新本地MT名单",
 	["Participant/MainTank"] = "Participant/MainTank",
-	["notifydeath"] = "死亡通知",
 	["Notify deaths"] = "死亡通知",
 	["Notifies you when a main tank dies."] = "当MT死亡是通知你",
 	["Tank %s has died!"] = "MT %s 已死亡！",
@@ -62,16 +67,12 @@ L:RegisterTranslations("zhCN", function() return {
 } end )
 
 L:RegisterTranslations("zhTW", function() return {
-	["maintank"] = "主坦",
 	["MainTank"] = "主坦",
-	["mt"] = "主坦",
 	["Options for the maintanks."] = "主坦選項",
-	["refresh"] = "更新",
 	["The local maintank list has been refreshed."] = "個人主坦名單已更新",
 	["Refresh Maintanks"] = "更新主坦",
 	["Refresh the local maintank list."] = "更新個人主坦名單",
 	["Participant/MainTank"] = "隊員/主坦",
-	["notifydeath"] = "死亡通知",
 	["Notify deaths"] = "死亡通知",
 	["Notifies you when a main tank dies."] = "當主坦死亡時通知你",
 	["Tank %s has died!"] = "主坦 %s 已死亡！",
@@ -80,16 +81,12 @@ L:RegisterTranslations("zhTW", function() return {
 } end )
 
 L:RegisterTranslations("frFR", function() return {
-	--["maintank"] = true,
-	--["MainTank"] = true,
-	--["mt"] = true,
+	["MainTank"] = "MainTank",
 	["Options for the maintanks."] = "Options concernant les maintanks.",
-	--["refresh"] = true,
 	["The local maintank list has been refreshed."] = "La liste locale des maintanks a \195\169t\195\169 rafra\195\174chie.",
 	["Refresh Maintanks"] = "Rafra\195\174chir les maintanks",
 	["Refresh the local maintank list."] = "Rafra\195\174chit la liste locale des maintanks.",
 	["Participant/MainTank"] = "Participant/MainTank",
-	--["notifydeath"] = true,
 	["Notify deaths"] = "Annoncer les morts",
 	["Notifies you when a main tank dies."] = "Pr\195\169viens quand un maintank meurt.",
 	["Tank %s has died!"] = "Le tank %s est mort !",
@@ -106,29 +103,23 @@ L:RegisterTranslations("deDE", function() return {
 --      Module Declaration      --
 ----------------------------------
 
-oRAPMainTank = oRA:NewModule(L["maintank"])
+oRAPMainTank = oRA:NewModule("maintank")
 oRAPMainTank.defaults = {
 	notifydeath = false,
 }
 oRAPMainTank.participant = true
 oRAPMainTank.name = L["Participant/MainTank"]
-oRAPMainTank.consoleCmd = L["mt"]
+oRAPMainTank.consoleCmd = "mt"
 oRAPMainTank.consoleOptions = {
-	type = "group",
-	desc = L["Options for the maintanks."],
-	name = L["MainTank"],
+	type = "group", name = L["MainTank"], desc = L["Options for the maintanks."],
 	args = {
-		[L["refresh"]] = {
-			name = L["Refresh Maintanks"], type = "execute",
-			desc = L["Refresh the local maintank list."],
-			func = function()
-				oRAPMainTank:Refresh()
-			end,
+		refresh = {
+			type = "execute", name = L["Refresh Maintanks"], desc = L["Refresh the local maintank list."],
+			func = function() oRAPMainTank:Refresh() end,
 			disabled = function() return not oRA:IsModuleActive(oRAPMainTank) end,
 		},
-		[L["notifydeath"]] = {
-			name = L["Notify deaths"], type = "toggle",
-			desc = L["Notifies you when a main tank dies."],
+		notifydeath = {
+			type = "toggle", name = L["Notify deaths"], desc = L["Notifies you when a main tank dies."],
 			get = function() return oRAPMainTank.db.profile.notifydeath end,
 			set = function(v) oRAPMainTank.db.profile.notifydeath = v end,
 		},
